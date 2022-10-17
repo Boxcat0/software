@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 class Controller(val service: MemberService) {
     @RequestMapping("/allusers")
-    /*fun index(): List<Member> = service.findMember()*/
     fun Mem(model: Model): String{
         model.addAttribute("re", service.findMember())
         return "Memberselect"

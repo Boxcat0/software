@@ -5,6 +5,17 @@
 <div class = "content">
   <div>
     <h1>WELCOME</h1>
+    <sec:authorize access="isAnonymous()">
+
+      <a href="/login" target="_self">Login</a>
+
+    </sec:authorize>
+
+    <sec:authorize access="isAuthenticated()">
+
+      <a href="/logout" target="_self">Logout</a>
+
+    </sec:authorize>
     <p>
       <a href="/allusers">회원 조회</a>
       <a href="/allreview">리뷰 조회</a>

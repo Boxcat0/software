@@ -31,6 +31,7 @@ class SecurityConfig(@Autowired private val accountService: AccountService,
                 .and()
                 .authorizeRequests()
                 .antMatchers("/allusers").access("hasRole('ADMIN')")
+                .antMatchers("/allreviews").authenticated()
                 .anyRequest().authenticated()
     }
 }

@@ -3,7 +3,6 @@ package com.example.demo.account.congifure
 import com.example.demo.account.Account
 import com.example.demo.account.AccountRole
 import com.example.demo.account.AccountService
-import com.example.demo.memberfind.Member
 import com.example.demo.memberfind.MemberService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.ApplicationArguments
@@ -26,7 +25,6 @@ class BeanConfig {
 
             @Autowired
             lateinit var accountService: AccountService
-            lateinit var memberService: MemberService
 
             @Throws(Exception::class)
             override fun run(args: ApplicationArguments) {
@@ -41,7 +39,7 @@ class BeanConfig {
                 accountService.saveAccount(admin)
                 val user = Account(null,
                         "test",
-                        "test-password",
+                        "test",
                         mutableSetOf(
                                 AccountRole.USER
                         )

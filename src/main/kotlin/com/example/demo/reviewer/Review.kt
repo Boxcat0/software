@@ -11,6 +11,6 @@ data class Review(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val review:String?,
-        val star: Double?,
+        val star: Double,
         val id : String?
 )
