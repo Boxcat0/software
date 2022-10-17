@@ -17,8 +17,10 @@ class AccountService(@Autowired private val accountRepository: AccountRepository
         return accountRepository.save(account)
     }
 
-    override fun loadUserByUsername(username: String): UserDetails {
+    override fun loadUserByUsername(username: String): UserDetails
+    {
         return accountRepository.findByid(username)?.getAuthorities()
                 ?: throw UsernameNotFoundException("$username Can Not Found")
     }
+    /*fun findId(id: String): String = accountRepository.findId(id)*/
 }

@@ -7,5 +7,6 @@ interface MemberRepository:CrudRepository<Member, Member> {
 
     @Query("select id,passwords from member")
     fun findMember(): List<Member>
+
 }
 

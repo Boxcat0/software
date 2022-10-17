@@ -3,6 +3,7 @@ package com.example.demo.account.congifure
 import com.example.demo.account.Account
 import com.example.demo.account.AccountRole
 import com.example.demo.account.AccountService
+import com.example.demo.memberfind.Member
 import com.example.demo.memberfind.MemberService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.ApplicationArguments
@@ -38,6 +39,14 @@ class BeanConfig {
                         )
                 )
                 accountService.saveAccount(admin)
+                val user = Account(null,
+                        "test",
+                        "test-password",
+                        mutableSetOf(
+                                AccountRole.USER
+                        )
+                )
+                accountService.saveAccount(user)
             }
         }
     }

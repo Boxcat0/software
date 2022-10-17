@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+
 import org.springframework.security.crypto.password.PasswordEncoder
 
 @EnableWebSecurity
@@ -29,10 +30,7 @@ class SecurityConfig(@Autowired private val accountService: AccountService,
                 .successForwardUrl(LOGIN_SUCCESS_URL)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/allusers").access("hasRole('ADMIN')")
                 .anyRequest().authenticated()
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login")
-                .invalidateHttpSession(true)
     }
 }
