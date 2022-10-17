@@ -30,6 +30,5 @@ class SecurityConfig(@Autowired private val accountService: AccountService,
                 .and()
                 .authorizeRequests()
                 .anyRequest().authenticated()
-                .antMatchers("/"). authenticated()
     }
 }

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest
 @RequestMapping("/view")
 class AccountController {
 
-    @RequestMapping("/success")
+    @RequestMapping("/success")//로그인 성공시 화면
     fun success(request: HttpServletRequest): String {
         return "home"
     }

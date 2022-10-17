@@ -11,7 +11,7 @@ import javax.persistence.*
 @Entity
 data class Account(
         @Id @GeneratedValue
-        var number: Long? = null,
+        var number: Long? = null,//기본 키
         var id: String?,
         var password: String,
 
