@@ -30,5 +30,9 @@ class SecurityConfig(@Autowired private val accountService: AccountService,
                 .and()
                 .authorizeRequests()
                 .anyRequest().authenticated()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login")
+                .invalidateHttpSession(true)
     }
 }

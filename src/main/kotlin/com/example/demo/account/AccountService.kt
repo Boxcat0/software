@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service
 class AccountService(@Autowired private val accountRepository: AccountRepository,
                      @Autowired private val passwordEncoder: PasswordEncoder): UserDetailsService {
 
-    fun saveAccount(account: Account): Account {
+    fun saveAccount(account: Account): Account
+    {
         account.password = this.passwordEncoder.encode(account.password)
         return accountRepository.save(account)
     }
