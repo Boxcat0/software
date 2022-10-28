@@ -2,12 +2,12 @@ package com.example.demo.memberfind
 
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
-import javax.persistence.EmbeddedId
 import javax.persistence.GeneratedValue
+import javax.persistence.Id
 
 @Table(name = "member")
 data class Member(
-    @EmbeddedId @GeneratedValue
+    @Id @GeneratedValue
     @Column("Id")
     var Id : String?,
     @Column("passwords")

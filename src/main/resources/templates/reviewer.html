@@ -10,12 +10,14 @@
         <th>Review</th>
         <th>별점</th>
         <th>ID</th>
+        <th>헬스장 번호</th>
       </tr>
       <tbody>
       <tr th:each = "re:${re}">
         <td th:text ="${re.review}">
         <td th:text ="${re.star}">
         <td th:text ="${re.id}">
+        <td th:text ="${re.gym_id}">
       </tr>
       </tbody>
     </table>

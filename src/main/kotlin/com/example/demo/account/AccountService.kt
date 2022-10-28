@@ -10,17 +10,15 @@ import org.springframework.stereotype.Service
 @Service
 class AccountService(@Autowired private val accountRepository: AccountRepository,
                      @Autowired private val passwordEncoder: PasswordEncoder): UserDetailsService {
-
     fun saveAccount(account: Account): Account
     {
         account.password = this.passwordEncoder.encode(account.password)
         return accountRepository.save(account)
     }
 
-    override fun loadUserByUsername(username: String): UserDetails
+    override fun loadUserByUsername(id: String): UserDetails
     {
-        return accountRepository.findByid(username)?.getAuthorities()
-                ?: throw UsernameNotFoundException("$username Can Not Found")
+        return accountRepository.findByid(id)?.getAuthorities()
+                ?: throw UsernameNotFoundException("$id Can Not Found")
     }
-    /*fun findId(id: String): String = accountRepository.findId(id)*/
 }

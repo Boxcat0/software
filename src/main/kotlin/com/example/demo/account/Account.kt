@@ -14,17 +14,15 @@ data class Account(
         var number: Long? = null,//기본 키
         var id: String?,
         var password: String,
-
         @Enumerated(EnumType.STRING)
         @ElementCollection(fetch = FetchType.EAGER)
         var roles: MutableSet<AccountRole>,
-
         @CreationTimestamp
         var createDt: LocalDateTime = LocalDateTime.now()
 ){
     fun getAuthorities(): User {
         return User(
-                this.id, this.password,
+                this.id,this.password,
                 this.roles.stream().map { role -> SimpleGrantedAuthority("ROLE_$role") }.collect(Collectors.toSet())
         )
     }
