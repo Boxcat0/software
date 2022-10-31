@@ -1,5 +1,6 @@
 package com.example.demo.account
 
+import com.example.demo.memberfind.registerMember
 import org.hibernate.annotations.CreationTimestamp
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User

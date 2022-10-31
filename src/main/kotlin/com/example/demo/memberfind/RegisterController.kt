@@ -16,9 +16,9 @@ class RegisterController(
         return "register"
     }
     private val log = LoggerFactory.getLogger("Controller2")
-    @PostMapping("/member_sign")
-    fun processForm(registermember : registerMember):String{
-        log.info("member : $registermember")
+    @PostMapping("/member_sign")//회원가입 로직
+    fun processForm(registermember : registerMember, member :Member):String{
+        log.info("registermember : $registermember")
         val insertMember = registerMemberRepository.save(registermember)
         log.info("inserted member:$insertMember")
         return "home"

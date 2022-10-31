@@ -4,14 +4,12 @@ import com.example.demo.account.AccountRole
 import org.springframework.data.relational.core.mapping.Table
 import javax.persistence.*
 
-
-
 @Entity
 @Table(name = "registerMember")
 data class registerMember(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        val number: Long? = -1,
+        val number: Long? = -1,//PK
         val name : String?,
         val passwords : String?,
         @Enumerated(EnumType.STRING)
