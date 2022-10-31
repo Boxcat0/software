@@ -1,0 +1,18 @@
+<!--회원가입 페이지-->
+<!--signup.html-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<form method="post" action="/member_sign">
+    <input type="hidden" name="_csrf" value="{{#_csrf}}token{{/_csrf}}" />
+    Id : <input type="text" name="name"><br/>
+    password : <input type="text" name="passwords"><br/>
+    <input type="hidden" name="roles" value="USER"/>
+    <input type="submit" value="Register"/>
+</form>
+<a href="/">Back</a>
+</body>
+</html>

@@ -18,4 +18,8 @@ class mainController {
         return "home"
     }
 
+    @GetMapping("/register")
+    fun regit(): String{
+        return "register"
+    }
 }

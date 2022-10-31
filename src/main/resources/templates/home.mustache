@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<body>
+<div class = "content">
+    <div>
+        <h1>WELCOME</h1>
+        {{#userName}}
+            <h3>NowUser : <td th:text ="${userName}"></h3>
+            <a href="/logout" target="_self">Logout</a>
+            <p>
+                <a href="/allusers">Memberfind</a>
+                <a href="/allreview">Reviewfind</a>
+                <a href="/register">Regist</a>
+                <a href="/api/board">review create</a>
+            </p>
+        {{/userName}}
+        {{^userName}}
+            <h3>NowUser : Please login</h3>
+            <a href="/login" target="_self">Login</a>
+        <p>
+            <a href="/register">Regist</a>
+            <a href="/allusers">Memberfind</a>
+        </p>
+        {{/userName}}
+    </div>
+</div>
+</body>
+</html>

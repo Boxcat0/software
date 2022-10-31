@@ -2,7 +2,6 @@ package com.example.demo.board
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
-import com.example.demo.board.BoardParamTo
 
 @RestController
 @RequestMapping("/api")
@@ -16,6 +15,9 @@ class BoardController (
 
     @GetMapping("/board")
     fun list() = boardService.getAllBoardList()
+    fun board():String{
+        return "board"
+    }
 
     @GetMapping("/board/{id}")
     fun detail(@PathVariable id: Int) = boardService.getBoardById(id)

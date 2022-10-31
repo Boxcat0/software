@@ -5,6 +5,8 @@ import org.springframework.data.relational.core.mapping.Table
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.ManyToOne
+import com.example.demo.memberfind.Member
 
 
 @Table("reviewtable")
@@ -13,6 +15,8 @@ data class Review(
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val review:String?,
         val star: Double,
-        val id : String?,
-        val gym_id : String?
+        val gym_id : String?,
+
+        @ManyToOne(targetEntity = Member::class)
+        var id : Member? = null
 )
