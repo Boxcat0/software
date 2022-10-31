@@ -17,9 +17,5 @@ class mainController {
     fun welcome(): String{
         return "home"
     }
-    @GetMapping("/reviewmake")
-    fun make(): String{
-        return "article"
-    }
 
 }

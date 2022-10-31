@@ -12,6 +12,7 @@ class Controller(val service: MemberService) {
     @RequestMapping("/allusers")
     fun Mem(model: Model): String{
         model.addAttribute("re", service.findMember())
+        model.addAttribute("name","admin")
         return "Memberselect"
     }
     @PostMapping("/allusers")

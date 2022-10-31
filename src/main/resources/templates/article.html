@@ -1,14 +1,17 @@
-<form class="container" action="/articles/create" method="post">
-  <div class="mb-3">
-    <label class="form-label">제목</label>
-    <!-- 입력값: title -->
-    <input type="text" class="form-control" name="title">
+<!DOCTYPE html>
+<html lang = "kr" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class = "layout">
+  <div>
+    <th><h1>리뷰 작성</h1></th>
+    <form action = "/create" method = "post">
+        <input type="hidden" name="_csrf" value="{{#_csrf}}token{{/_csrf}}" />
+        <input name="title" type="text"><br>
+        <textarea name="content"></textarea><br>
+        <button type="submit">작성</button>
+    </form>
+    <a href="/">뒤로 가기</a>
   </div>
-  <div class="mb-3">
-    <label class="form-label">내용</label>
-    <!-- 입력값: content -->
-    <textarea class="form-control" rows="3" name="content"></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-<a href="/">뒤로 가기</a>
+</div>
+</body>
+</html>

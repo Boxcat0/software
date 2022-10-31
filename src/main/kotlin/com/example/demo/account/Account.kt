@@ -12,7 +12,7 @@ import javax.persistence.*
 data class Account(
         @Id @GeneratedValue
         var number: Long? = null,//기본 키
-        var id: String?,
+        var id: String,
         var password: String,
         @Enumerated(EnumType.STRING)
         @ElementCollection(fetch = FetchType.EAGER)

@@ -13,6 +13,7 @@ class ReviewController(val service: ReviewService) {
     /*fun re(): List<Review> = service.findReviews()*/
     fun review(model: Model): String{
         model.addAttribute("re", service.findReviews())
+        model.addAttribute("name","admin")
         return "reviewer"
     }
     @PostMapping("/allreview")

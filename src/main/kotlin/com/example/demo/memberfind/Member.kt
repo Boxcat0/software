@@ -1,5 +1,6 @@
 package com.example.demo.memberfind
 
+import lombok.Builder
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import javax.persistence.GeneratedValue
@@ -13,4 +14,3 @@ data class Member(
     @Column("passwords")
     var passwords : String
 )
-
