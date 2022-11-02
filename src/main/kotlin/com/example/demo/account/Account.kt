@@ -1,15 +1,16 @@
 package com.example.demo.account
 
-import com.example.demo.memberfind.registerMember
 import org.hibernate.annotations.CreationTimestamp
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserDetails
 import java.time.LocalDateTime
 import java.util.stream.Collectors
 import javax.persistence.*
 
 
 @Entity
+@Table(name = "Account")
 data class Account(
         @Id @GeneratedValue
         var number: Long? = null,//기본 키
@@ -17,9 +18,7 @@ data class Account(
         var password: String,
         @Enumerated(EnumType.STRING)
         @ElementCollection(fetch = FetchType.EAGER)
-        var roles: MutableSet<AccountRole>,
-        @CreationTimestamp
-        var createDt: LocalDateTime = LocalDateTime.now()
+        var roles: MutableSet<AccountRole>
 ){
     fun getAuthorities(): User {
         return User(

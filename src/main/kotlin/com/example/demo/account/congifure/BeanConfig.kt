@@ -18,7 +18,7 @@ class BeanConfig {
     fun passwordEncoder(): PasswordEncoder {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder()
     }
-    @Bean
+    /*@Bean // 데이터 날아가는거 대비 비상 아이디 선언
     fun applicationRunner(): ApplicationRunner {
         return object : ApplicationRunner {
             @Autowired
@@ -26,7 +26,7 @@ class BeanConfig {
             @Throws(Exception::class)
             override fun run(args: ApplicationArguments) {
                 val admin = Account(null,
-                        "admin",
+                        "admin12",
                         "admin1234",
                         mutableSetOf(
                                 AccountRole.ADMIN,
@@ -35,7 +35,7 @@ class BeanConfig {
                 )
                 accountService.saveAccount(admin)
                 val user = Account(null,
-                        "test",
+                        "test12",
                         "test1234",
                         mutableSetOf(
                                 AccountRole.USER
@@ -44,5 +44,5 @@ class BeanConfig {
                 accountService.saveAccount(user)
             }
         }
-    }
+    }*/
 }

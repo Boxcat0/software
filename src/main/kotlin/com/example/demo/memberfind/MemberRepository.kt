@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface MemberRepository:CrudRepository<Member, Member> {
-    @Query("select id,passwords from member")
+    @Query("select id,password from member")
     fun findmember(): List<Member>
 
 }

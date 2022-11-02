@@ -28,11 +28,10 @@ class SecurityConfig(@Autowired private val accountService: AccountService,
         http.anonymous()
                 .and()
                 .formLogin()
-                //.loginPage("/login")
                 .successForwardUrl(LOGIN_SUCCESS_URL)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/allusers").access("hasRole('ADMIN')")
+                .antMatchers("/allusers").access("hasRole('USER')")
                 .antMatchers("/allreviews").authenticated()
                 .anyRequest().authenticated()
     }

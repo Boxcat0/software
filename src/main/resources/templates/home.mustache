@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <body>
 <div class = "content">
@@ -9,19 +9,21 @@
             <h3>NowUser : <td th:text ="${userName}"></h3>
             <a href="/logout" target="_self">Logout</a>
             <p>
-                <a href="/allusers">Memberfind</a>
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/allusers">Memberfind</a></li>
                 <a href="/allreview">Reviewfind</a>
                 <a href="/register">Regist</a>
                 <a href="/api/board">review create</a>
             </p>
         {{/userName}}
         {{^userName}}
+            <p>
             <h3>NowUser : Please login</h3>
             <a href="/login" target="_self">Login</a>
-        <p>
-            <a href="/member_sign">Regist</a>
-            <a href="/allusers">Memberfind</a>
-        </p>
+            <p>
+                <a href="/allaccount">Memberfind</a>
+                <a href="/member_sign2">Regist</a>
+                <a href="/allusers">Memberfind</a>
+            </p>
         {{/userName}}
     </div>
 </div>

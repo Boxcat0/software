@@ -6,10 +6,9 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<form method="post" action="/member_sign">
-    <input type="hidden" name="_csrf" value="{{#_csrf}}token{{/_csrf}}" />
-    Id : <input type="text" name="name"><br/>
-    password : <input type="text" name="passwords"><br/>
+<form method="post" action="/member_sign2">
+    Id : <input type="text" name="id"><br/>
+    password : <input type="text" name="password"><br/>
     <input type="hidden" name="roles" value="USER"/>
     <input type="submit" value="Register"/>
 </form>
