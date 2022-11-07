@@ -15,13 +15,14 @@
       </tr>
       <tbody>
       <tr th:each = "re:${re}">
-        <td th:text ="${re.review}">
+        <td th:text ="${re.reviews}">
         <td th:text ="${re.star}">
         <td th:text ="${re.id}">
-        <td th:text ="${re.gym_id}">
+        <td th:text ="${re.gym}">
       </tr>
       </tbody>
     </table>
+    <a href ="/review_delete">리뷰 삭제</a>
     <a href="/">뒤로 가기</a>
   </div>
 </div>

@@ -1,6 +1,5 @@
 package com.example.demo.account
 
-import com.example.demo.reviewer.Review
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -8,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 @Service
 class AccountService(@Autowired private val accountRepository: AccountRepository,
@@ -19,14 +19,18 @@ class AccountService(@Autowired private val accountRepository: AccountRepository
         return accountRepository.save(account)
     }
     fun findAccount(): List<Account> = accountRepository.findAccountBy()
-    fun Accountpost(account : Account)
+    fun accountpost(account : Account)
     {
         accountRepository.save(account)
     }
 
+    fun remove(account : Account){
+        accountRepository.delete(account)
+    }
+
     override fun loadUserByUsername(id: String): UserDetails
     {
-        return accountRepository.findByid(id)?.getAuthorities()
+        return accountRepository.findById(id)?.getAuthorities()
                 ?: throw UsernameNotFoundException("$id Can Not Found")
     }
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang = "kr" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div class = "content">
+    <div>
+        <th><h1>SHOW MEMBER</h1></th>
+        <h3>NOW USER : {{userName}}</h3>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>ROLES</th>
+            </tr>
+            {{#re}}
+                <tbody>
+            <th>{{id}}</th>
+            <th>{{roles}}</th>
+                </tbody>
+            {{/re}}
+        </table>
+        <a href="/">BACK</a>
+    </div>
+</div>
+</body>
+</html>

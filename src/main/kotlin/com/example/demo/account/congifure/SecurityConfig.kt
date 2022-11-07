@@ -15,24 +15,30 @@ class SecurityConfig(@Autowired private val accountService: AccountService,
 
     companion object {
         const val LOGIN_SUCCESS_URL: String = "/view/success"
+        const val LOGOUT_SUCCESS_URL: String = "/home"
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth
                 .userDetailsService(accountService)
                 .passwordEncoder(passwordEncoder)
+        auth.eraseCredentials(false);//비밀번호  null 값 방지
     }
 
     override fun configure(http: HttpSecurity) {
         http.csrf().disable()
+        http.logout()
+            .logoutUrl("/logout")
+            .logoutSuccessUrl(LOGOUT_SUCCESS_URL)
+            .deleteCookies("JSESSIONID","remember-me")
         http.anonymous()
                 .and()
                 .formLogin()
                 .successForwardUrl(LOGIN_SUCCESS_URL)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/allusers").access("hasRole('USER')")
-                .antMatchers("/allreviews").authenticated()
+                .antMatchers("/allaccount").access("hasRole('ADMIN')")
+                .antMatchers("/allreviews").access("hasRole('USER')")
                 .anyRequest().authenticated()
     }
 }

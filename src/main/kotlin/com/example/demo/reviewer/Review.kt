@@ -1,22 +1,21 @@
 package com.example.demo.reviewer
 
 
-import org.springframework.data.relational.core.mapping.Table
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.ManyToOne
-import com.example.demo.memberfind.Member
+import org.springframework.data.relational.core.mapping.Column
+import javax.persistence.*
 
-
-@Table("reviewtable")
+@Entity
+@Table(name = "Review")
 data class Review(
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val review:String?,
-        val star: Double,
-        val gym_id : String?,
-
-        @ManyToOne(targetEntity = Member::class)
-        var id : Member? = null
+        @GeneratedValue(strategy = GenerationType.AUTO)//Default value 문제 생기면 AUTO로 바꿔주면 된다.
+        var number : Long? = null,
+        @Column("id")
+        var id : String,
+        @Column("star")
+        var star: Double?,
+        @Column("reviews")
+        var reviews:String,
+        @Column("gym_number")
+        var gym : Long?
 )

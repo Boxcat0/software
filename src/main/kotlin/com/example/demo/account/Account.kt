@@ -1,10 +1,7 @@
 package com.example.demo.account
 
-import org.hibernate.annotations.CreationTimestamp
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
-import org.springframework.security.core.userdetails.UserDetails
-import java.time.LocalDateTime
 import java.util.stream.Collectors
 import javax.persistence.*
 

@@ -6,13 +6,18 @@
     <div>
         <h1>WELCOME</h1>
         {{#userName}}
-            <h3>NowUser : <td th:text ="${userName}"></h3>
+            <h3>NowUser : {{userName}}</h3>
             <a href="/logout" target="_self">Logout</a>
             <p>
-            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/allusers">Memberfind</a></li>
-                <a href="/allreview">Reviewfind</a>
-                <a href="/register">Regist</a>
-                <a href="/api/board">review create</a>
+            <li><a href="/allaccount">Memberfind</a></li>
+            <li><a href="/allreview">Reviewfind</a></li>
+            <li><a href="/board">review create</a></li>
+            <li><a href="/member_delete">Delete Member</a></li>
+            <li><a href="/Map">Open Map</a></li>
+            <li><a href="/member_sign2">Regist</a></li>
+            <li><a href="/review_delete">Delete review</a></li>
+            <li><a href="/user_review">User separate Review</a></li>
+            <li><a href="/gym_review">Gym separate Review</a></li>
             </p>
         {{/userName}}
         {{^userName}}
@@ -20,9 +25,7 @@
             <h3>NowUser : Please login</h3>
             <a href="/login" target="_self">Login</a>
             <p>
-                <a href="/allaccount">Memberfind</a>
                 <a href="/member_sign2">Regist</a>
-                <a href="/allusers">Memberfind</a>
             </p>
         {{/userName}}
     </div>

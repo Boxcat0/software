@@ -1,0 +1,17 @@
+<!--signup.html-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <th><h1>User Separate PAGE</h1></th>
+</head>
+<body>
+<form method="post" action="/gym_review">
+  Gym : <input type="number" name="gym"><br/>
+  <input type="hidden" name="id" value="target"/>
+  <input type="hidden" name="reviews" value="target"/>
+  <input type="submit" value="Register"/>
+</form>
+<a href="/">Back</a>
+</body>
+</html>

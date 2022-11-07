@@ -1,0 +1,335 @@
+<!--adf74ad67e4999ffc26db73175bf8516-->
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>주소로 장소 표시하기</title>
+
+</head>
+<body>
+<div id="map" style="width:100%;height:700px;"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adf74ad67e4999ffc26db73175bf8516&libraries=services"></script>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(37.527128, 127.000291), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    var positions = [
+        {
+            title: '우노 휘트니스',
+            address: '서울특별시 용산구 보광로 30'
+        },
+        {
+            title: 'AK운동맞춤센터',
+            address: '서울특별시 용산구 신흥로 72'
+        },
+        {
+            title: '웰니스짐',
+            address: '서울특별시 용산구 회나무로26길 12'
+        },
+        {
+            title: '동국스포츠',
+            address: '서울특별시 용산구 원효로 55'
+        },
+        {
+            title: '리콥 웰니스센터',
+            address: '서울특별시 용산구 한남대로21길 14'
+        },
+        {
+            title: 'J헬스클럽',
+            address: '서울특별시 용산구 대사관로34길 26'
+        },
+        {
+            title: '스카이 휘트니스클럽',
+            address: '서울특별시 용산구 한강대로 258'
+        },
+        {
+            title: '해밀톤 휘트니스센터',
+            address: '서울특별시 용산구 이태원로27가길 26'
+        },
+        {
+            title: '드래곤힐스파휘트니스클럽',
+            address: '서울특별시 용산구 한강대로21나길 40'
+        },
+        {
+            title: 'GOTO 용산점',
+            address: '서울특별시 용산구 이촌로 1'
+        },
+        {
+            title: '에이치 앤 휘트니스',
+            address: '서울특별시 용산구 독서당로 39'
+        },
+        {
+            title: '밸런스 핏',
+            address: '서울특별시 용산구 청파로47길 49'
+        },
+        {
+            title: '메가짐',
+            address: '서울특별시 용산구 한강대로43길 8'
+        },
+        {
+            title: '스포짐옐로우 이촌점',
+            address: '서울특별시 용산구 이촌로84길 9'
+        },
+        {
+            title: '킴스짐헬스크럽',
+            address: '서울특별시 용산구 이태원로27길 34-34'
+        },
+        {
+            title: '위드짐 한남점(WITHGYM)',
+            address: '서울특별시 용산구 대사관로 34'
+        },
+        {
+            title: '센티넬 크로스핏 한남1',
+            address: '서울특별시 용산구 한남대로21길 17'
+        },
+        {
+            title: '동서 골프&휘트니스',
+            address: '서울특별시 용산구 청파로 312'
+        },
+        {
+            title: '위너핏PT스튜디오',
+            address: '서울특별시 용산구 한강대로 282'
+        },
+        {
+            title: '스포짐',
+            address: '서울특별시 용산구 백범로 341'
+        },
+        {
+            title: '프라이빗 웰니스',
+            address: '서울특별시 용산구 이태원로 267'
+        },
+        {
+            title: 'H 스튜디오',
+            address: '서울특별시 용산구 대사관로 76'
+        },
+        {
+            title: '반트짐',
+            address: '서울특별시 용산구 이촌로 200'
+        },
+        {
+            title: 'Fit In Cool',
+            address: '서울특별시 용산구 대사관로19길 7'
+        },
+        {
+            title: '팀레드',
+            address: '서울특별시 용산구 원효로 255'
+        },
+        {
+            title: '분더바 짐',
+            address: '서울특별시 용산구 이촌로 224'
+        },
+        {
+            title: 'Fit Club',
+            address: '서울특별시 용산구 녹사평대로 240'
+        },
+        {
+            title: '바나나필라 피티',
+            address: '서울특별시 용산구 독서당로 67'
+        },
+        {
+            title: 'Beautiful Evolution',
+            address: '서울특별시 용산구 장문로 74'
+        },
+        {
+            title: '에스퍼스널트레이닝',
+            address: '서울특별시 용산구 서빙고로 69'
+        },
+        {
+            title: 'PENTACLE',
+            address: '서울특별시 용산구 후암로 107'
+        },
+        {
+            title: '레브트레이닝',
+            address: '서울특별시 용산구 유엔빌리지1길 18'
+        },
+        {
+            title: '스포벡',
+            address: '서울특별시 용산구 한강대로 259'
+        },
+        {
+            title: '와가짐',
+            address: '서울특별시 용산구 이촌로 264'
+        },
+        {
+            title: '시크모어 웰니스 스튜디오',
+            address: '서울특별시 용산구 장문로 147'
+        },
+        {
+            title: '칼라퍼스널트레이닝',
+            address: '서울특별시 용산구 원효로 259-1'
+        },
+        {
+            title: '랜스앤제이 퍼스널 트레이닝 스튜디오',
+            address: '서울특별시 용산구 유엔빌리지길 254'
+        },
+        {
+            title: '유즈웰(USEWELL)',
+            address: '서울특별시 용산구 한남대로 60'
+        },
+        {
+            title: '제이짐',
+            address: '서울특별시 용산구 장문로19길 4'
+        },
+        {
+            title: '더블에이 이촌',
+            address: '서울특별시 용산구 이촌로 192'
+        },
+        {
+            title: '피트 트레이닝센터',
+            address: '서울특별시 용산구 이촌로 347'
+        },
+        {
+            title: '파프짐',
+            address: '서울특별시 용산구 독서당로 97'
+        },
+        {
+            title: '만리 체육관',
+            address: '서울특별시 용산구 효창원로 276'
+        },
+        {
+            title: '찰스짐',
+            address: '서울특별시 용산구 이촌로88길 8'
+        },
+        {
+            title: '후핏',
+            address: '서울특별시 용산구 이촌로 274'
+        },
+        {
+            title: '스포짐 앤 이엠파워',
+            address: '서울특별시 용산구 독서당로 70'
+        },
+        {
+            title: '판크 트레이닝클럽',
+            address: '서울특별시 용산구 한남대로 59'
+        },
+        {
+            title: '라온휘트니스',
+            address: '서울특별시 용산구 효창원로 132'
+        },
+        {
+            title: '짐나우 퍼스널트레이닝',
+            address: '서울특별시 용산구 한남대로42길 33'
+        },
+        {
+            title: '진핏퍼스널트레이닝',
+            address: '서울특별시 용산구 한남대로 76'
+        },
+        {
+            title: '바나나휘트니스24',
+            address: '서울특별시 용산구 독서당로 67'
+        },
+        {
+            title: 'ONE MORE',
+            address: '서울특별시 용산구 이태원로 216'
+        },
+        {
+            title: '스포벡휘트니스',
+            address: '서울특별시 용산구 한강대로 296'
+        },
+        {
+            title: '오아핏',
+            address: '서울특별시 용산구 청파로47나길 4'
+        },
+        {
+            title: 'Sanctuary',
+            address: '서울특별시 용산구 장문로6길 4'
+        },
+        {
+            title: '망고짐',
+            address: '서울특별시 용산구 한강대로 282'
+        },
+        {
+            title: 'F45 트레이닝 한남',
+            address: '서울특별시 용산구 독서당로 70'
+        },
+        {
+            title: '바디컨설팅',
+            address: '서울특별시 용산구 한강대로 304'
+        },
+        {
+            title: 'TIM GYM',
+            address: '서울특별시 용산구 대사관로34길 22'
+        },
+        {
+            title: '에이블짐 이태원역점',
+            address: '서울특별시 용산구 이태원로27나길 40'
+        },
+        {
+            title: ',NEW RUN',
+            address: '서울특별시 용산구 한강대로 69'
+        },
+        {
+            title: '짐나우 신용산점',
+            address: '서울특별시 용산구 서빙고로 17'
+        },
+        {
+            title: 'FIT NOMAD',
+            address: '서울특별시 용산구 이태원로17길 23-17'
+        },
+        {
+            title: '내셔널짐',
+            address: '서울특별시 용산구 백범로 341'
+        },
+        {
+            title: '모어피클',
+            address: '서울특별시 용산구 서빙고로 17'
+        }
+    ];
+
+    // 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+    var bounds = new kakao.maps.LatLngBounds(); //추가한 코드
+
+    positions.forEach(function (position) {
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(position.address, function(result, status) {
+
+            // 정상적으로 검색이 완료됐으면
+            if (status === kakao.maps.services.Status.OK) {
+
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords,
+                    title: position.title
+                });
+                marker.setMap(map);
+
+                // LatLngBounds 객체에 좌표를 추가합니다
+                bounds.extend(coords);
+
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: '<div style="width:150px;text-align:center;padding:6px 0;">' + position.title + '</div>'
+                });
+                infowindow.open(map, marker);
+                kakao.maps.event.addListener(marker, 'click', function() {
+                    //마커 클릭 이벤트
+                    alert(position.title)
+                });
+
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                setBounds();
+            }
+        });
+    });
+    function setBounds() {
+        // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
+        // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
+        map.setBounds(bounds);
+    }
+</script>
+</body>
+</html>
