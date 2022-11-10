@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import javax.persistence.*
 
-@Table(name = "member")
+@Table(name="member")
 data class Member(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column("Id")

@@ -21,19 +21,19 @@ class UserReview(@Autowired private val pass: PasswordEncoder,
     {
         return "usercheck"
     }
-    @GetMapping("/gym_review")
-    fun intocheck2():String
+    @GetMapping("/{GymId}/gym_review")
+    fun intocheck2(session: HttpSession, model: Model):String
     {
+        model.addAttribute("gym",session.getAttribute("sessionGym"))
         return "gymcheck"
     }
-    @RequestMapping("/gym_review")
+    @RequestMapping("/{GymId}/gym_review")
     fun searchReview2(@AuthenticationPrincipal user: UserDetails,
                      session: HttpSession,
                      review: Review,
                      model: Model
     ):String{
-        val targetgym : Long? = review.gym
-
+        val targetgym : String? = review.gym
         val searchTarget : List<Review> = reviewRepository.findReviewsByGym(targetgym)//헬스장 기반 리뷰 조회
         model.addAttribute("name", user.username)
         model.addAttribute("re", searchTarget)

@@ -15,7 +15,12 @@ class ReviewService(@Autowired private val db: ReviewRepository){
     fun removing(review : Review){
         db.delete(review)
     }
-    fun findGymByid(reviews : List<Review>,gym:Long?):Review
+    fun changing(review : Review, change : String)
+    {
+        review.reviews = change
+        db.save(review)
+    }
+    fun findGymByid(reviews : List<Review>,gym:String?):Review//gym을 기반으로 헬스장 탐색
     {
         for(i in 0..reviews.size)
         {

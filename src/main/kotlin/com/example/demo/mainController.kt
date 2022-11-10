@@ -13,10 +13,12 @@ import javax.servlet.http.HttpSession
 @Controller
 class mainController {
     @GetMapping("/")
-    fun welcome(@AuthenticationPrincipal userDetails: UserDetails, model : Model): String {
+    fun welcome(@AuthenticationPrincipal userDetails: UserDetails, model : Model,session: HttpSession): String {
         val name: String = userDetails.username
         println(name)
         model.addAttribute("userName", name)
+        session.removeAttribute("sessionGym")
+        session.removeAttribute("sessionPosition")
         return "home"
     }
 
@@ -29,8 +31,5 @@ class mainController {
         return "home"
     }
 
-    @GetMapping("/Map")
-    fun OpenMap():String {
-        return "Map"
-    }
+
 }

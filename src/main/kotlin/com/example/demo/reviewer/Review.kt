@@ -16,6 +16,6 @@ data class Review(
         var star: Double?,
         @Column("reviews")
         var reviews:String,
-        @Column("gym_number")
-        var gym : Long?
+        @Column("gym_name")
+        var gym : String?
 )

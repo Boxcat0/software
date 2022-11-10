@@ -317,7 +317,8 @@
                 infowindow.open(map, marker);
                 kakao.maps.event.addListener(marker, 'click', function() {
                     //마커 클릭 이벤트
-                    alert(position.title)
+                    alert(position.title);
+
                 });
 
                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
@@ -331,5 +332,6 @@
         map.setBounds(bounds);
     }
 </script>
+<a href="/">Back</a>
 </body>
 </html>

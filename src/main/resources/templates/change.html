@@ -1,0 +1,20 @@
+<!--signup.html-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <th><h1>리뷰 변경 PAGE</h1></th>
+</head>
+<body>
+<form method="post" action="/change_review">
+  <input type="hidden" name="id" th:value="${id}"><br/>
+  password : <input type="text" name="password"><br/>
+  <input type="hidden" name="roles" value="USER"/>
+  Gym : <input type = "number" name = "gym"><br/>
+  변경할 리뷰 : <input type="text" name="reviews"/><br/>
+  <input type="submit" value="Register"/>
+</form>
+<a href="javascript:history.back(-1)">뒤로가기</a>
+<a href="/">메인 페이지 이동</a>
+</body>
+</html>

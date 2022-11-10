@@ -1,0 +1,51 @@
+<!--id 저장할 수 있도록-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>별점</title>
+  <link rel="stylesheet" href="./star.css"/>
+  <script type="text/javascript" src="./star.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <h1>리뷰</h1>
+  <h3>현재 로그인된 사용자 : <td th:text ="${id}"></h3>
+  <h2><td th:text = "${gym}"></h2>
+  <form name="reviewform" class="reviewform" method="post" action="/{GymId}/starsave">
+    <input type="hidden" name="id" th:value = "${id}">
+    <input type="hidden" name="gym" th:value = "${gym}">
+    <input type="hidden" name="rate" id="rate" value="0"/>
+    <p class="title_star">별점과 리뷰를 남겨주세요.</p>
+
+    <div class="review_rating">
+      <div class="warning_msg">별점을 선택해 주세요.</div>
+      <div class="rating">
+        <!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->
+        <input type="checkbox" name="star" id="rating1" value="1" class="rate_radio" title="1점">
+        <label for="rating1"></label>
+        <input type="checkbox" name="star" id="rating2" value="2" class="rate_radio" title="2점">
+        <label for="rating2"></label>
+        <input type="checkbox" name="star" id="rating3" value="3" class="rate_radio" title="3점" >
+        <label for="rating3"></label>
+        <input type="checkbox" name="star" id="rating4" value="4" class="rate_radio" title="4점">
+        <label for="rating4"></label>
+        <input type="checkbox" name="star" id="rating5" value="5" class="rate_radio" title="5점">
+        <label for="rating5"></label>
+      </div>
+    </div>
+    <div class="review_t">
+      <div class="warning_msg">1자 이상 40자 이하로 작성해 주세요.</div>
+      <textarea rows="1" class="review_t_textarea"></textarea>
+    </div>
+    <div class="review_contents">
+      <div class="warning_msg">1자 이상 400자 이하로 작성해 주세요.</div>
+      <textarea rows="10" name ="reviews" class="review_textarea"></textarea>
+    </div>
+    <input type="submit" value="Register"/>
+  </form>
+  <a href="/">Back</a>
+</div>
+</body>
+</html>

@@ -6,29 +6,32 @@
     <div>
         <h1>WELCOME</h1>
         {{#userName}}
+            {{#GymId}}
             <h3>NowUser : {{userName}}</h3>
+            <h3>GYM : {{GymId}}</h3>
+            <h4>position : {{GymPosition}}</h4>
             <a href="/logout" target="_self">Logout</a>
             <p>
-            <li><a href="/allaccount">Memberfind</a></li>
-            <li><a href="/allreview">Reviewfind</a></li>
-            <li><a href="/member_delete">Delete Member</a></li>
-            <li><a href="/Map">Open Map</a></li>
-            <li><a href="/member_sign2">Regist</a></li>
-            <li><a href="/user_review">User separate Review</a></li>
+            <li><a href="/{{GymId}}/board">review create</a></li>
+            <li><a href="/{{GymId}}/review_delete">Delete review</a></li>
+            <li><a href="/{{GymId}}/gym_review">Gym separate Review</a></li>
             <li><a href="/change_review">Review change</a></li>
-            <li><a href="/middlePage">middle change</a></li>
             </p>
+            {{/GymId}}
         {{/userName}}
         {{^userName}}
+            {{#GymId}}
             <p>
             <h3>NowUser : Please login</h3>
             <a href="/login" target="_self">Login</a>
             <p>
-            <li><a href="/member_sign2">Regist</a></li>
-            <li><a href="/Map">Open Map</a></li>
+                <li><a href="/{{GymId}}/gym_review">Gym separate Review</a></li>
+                <li><a href="/member_sign2">Regist</a></li>
             </p>
+            {{/GymId}}
         {{/userName}}
     </div>
 </div>
+<a href="/">Main Page</a>
 </body>
 </html>

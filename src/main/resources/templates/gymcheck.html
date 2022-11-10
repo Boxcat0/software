@@ -3,14 +3,15 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <th><h1>User Separate PAGE</h1></th>
+  <th><h1>Gym Separate PAGE</h1></th>
+  <h2>Do you Check Review?</h2>
 </head>
 <body>
-<form method="post" action="/gym_review">
-  Gym : <input type="number" name="gym"><br/>
+<form method="post" action="/{GymId}/gym_review">
+  <input type="hidden" name="gym" th:value ="${gym}"><br/>
   <input type="hidden" name="id" value="target"/>
   <input type="hidden" name="reviews" value="target"/>
-  <input type="submit" value="Register"/>
+  <input type="submit" value="Yes"/>
 </form>
 <a href="/">Back</a>
 </body>

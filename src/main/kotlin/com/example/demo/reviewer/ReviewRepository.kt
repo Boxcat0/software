@@ -10,7 +10,7 @@ interface ReviewRepository: JpaRepository<Review, Review> {
     @Query("select reviews from review where id = id")
     fun findReviewById(id:String): List<Review>
     @Query("select reviews from review where gym = gym")
-    fun findReviewsByGym(gym: Long?) : List<Review>
+    fun findReviewsByGym(gym: String?) : List<Review>
     @Query("select reviews, star, id, gym from review")
     fun findReviewsBy(): List<Review>
 }

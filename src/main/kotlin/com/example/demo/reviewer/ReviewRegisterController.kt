@@ -8,20 +8,23 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpSession
 
-
+@RequestMapping("/{GymId}")
 @Controller
 class ReviewRegisterController( val service: ReviewService) {
 
     @GetMapping("/board")
-    fun showmap(@AuthenticationPrincipal userDetails: UserDetails, model : Model):String {
+    fun showmap(@AuthenticationPrincipal userDetails: UserDetails, model : Model,session: HttpSession):String {
         model.addAttribute("id",userDetails.username)
-        return "board"
+        model.addAttribute("gym",session.getAttribute("sessionGym"))
+        println(session.getAttribute("sessionGym"))
+        return "Starreview"
     }
 
     private val log = LoggerFactory.getLogger("ReviewRegisterController2")
-    @PostMapping("/board")//리뷰 저장
+    @PostMapping("/starsave")//리뷰 저장
     fun makereview(@AuthenticationPrincipal userDetails: UserDetails,review : Review, session: HttpSession):String{
         log.info("review : $review")
         println(review.id)
