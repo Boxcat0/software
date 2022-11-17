@@ -6,10 +6,10 @@
   <th><h1>Delete Review PAGE</h1></th>
 </head>
 <body>
-<form method="post" action="/{GymId}/review_delete">
+<form method="post" action="/review_delete">
   Id : <input type="text" name="id"><br/>
   password : <input type="text" name="password"><br/>
-  Gym : <input type="text" name="gym"><br/>
+  <input type="hidden" name="gym" th:value="${gym}"><br/>
   <input type="hidden" name="roles" value="USER"/>
   <input type="hidden" name="reviews" value="target"/>
   <input type="submit" value="Register"/>

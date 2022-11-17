@@ -34,14 +34,6 @@ class BeanConfig {
                         )
                 )
                 accountService.saveAccount(admin)
-                val user = Account(null,
-                        "test12",
-                        "test1234",
-                        mutableSetOf(
-                                AccountRole.USER
-                        )
-                )
-                accountService.saveAccount(user)
             }
         }
     }*/

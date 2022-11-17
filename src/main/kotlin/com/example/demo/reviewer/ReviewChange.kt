@@ -29,20 +29,21 @@ class ReviewChange(@Autowired private val pass: PasswordEncoder,
                      session: HttpSession,
                      review: Review
     ): String{
-        val dbPassword = user.password
+        val dbPassword : String = user.password
         println(dbPassword)
-        val targetId = account.id
+        val targetId : String = account.id
         println(targetId)
-        val targetGym = review.gym
-        val change = review.reviews
-        val targetPassword = account.password
+        val targetGym : String? = review.gym
+        val changereviews : String = review.reviews
+        val targetPassword : String = account.password
         println(targetPassword)
-        if(pass.matches(dbPassword, targetPassword))
+        if(pass.matches(targetPassword, dbPassword))//확인하고 싶은 비밀번호, 확인 타겟 위치 기억할것
         {
             val deleteTargetid : List<Review> = reviewRepository.findReviewById(targetId)//아이디 기준으로 리뷰 조회
             println(deleteTargetid)
             val finaltarget : Review = reviewService.findGymByid(deleteTargetid,targetGym)//아이디랑 헬스장 번호로 조회
-            reviewService.changing(finaltarget, change)
+            finaltarget.reviews = changereviews//타겟된 리뷰를 change로 변경
+            reviewService.SaveReview(finaltarget)
             return "redirect:/"
         }
         return "change"

@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>별점</title>
-  <link rel="stylesheet" href="./star.css"/>
-  <script type="text/javascript" src="./star.js"></script>
+  <link rel="stylesheet" href="/css/star.css"/>
+  <script type="text/javascript" src="/js/star.js"></script>
 </head>
 <body>
 <div class="wrap">
   <h1>리뷰</h1>
   <h3>현재 로그인된 사용자 : <td th:text ="${id}"></h3>
   <h2><td th:text = "${gym}"></h2>
-  <form name="reviewform" class="reviewform" method="post" action="/{GymId}/starsave">
+  <form name="reviewform" class="reviewform" method="post" action="/starsave">
     <input type="hidden" name="id" th:value = "${id}">
     <input type="hidden" name="gym" th:value = "${gym}">
     <input type="hidden" name="rate" id="rate" value="0"/>
@@ -45,7 +45,7 @@
     </div>
     <input type="submit" value="Register"/>
   </form>
-  <a href="/">Back</a>
+  <a href="/eventPage">Back</a>
 </div>
 </body>
 </html>

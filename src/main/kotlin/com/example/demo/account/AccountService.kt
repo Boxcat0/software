@@ -1,5 +1,6 @@
 package com.example.demo.account
 
+import com.example.demo.reviewer.Review
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -17,6 +18,18 @@ class AccountService(@Autowired private val accountRepository: AccountRepository
     {
         account.password = this.passwordEncoder.encode(account.password)
         return accountRepository.save(account)
+    }
+    fun searchAccount(id: String, account : List<Account>): Account
+    {
+        for(i in 0..account.size-1)
+        {
+            if(account[i].id == id)
+            {
+                return account[i]
+                break
+            }
+        }
+        return Account(null,"null","null",mutableSetOf(AccountRole.USER))
     }
     fun findAccount(): List<Account> = accountRepository.findAccountBy()
     fun accountpost(account : Account)

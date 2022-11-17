@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpSession
 
-@RequestMapping("/{GymId}")
+/*@RequestMapping("/{GymId}")*/
 @Controller
 class ReviewRegisterController( val service: ReviewService) {
 
     @GetMapping("/board")
     fun showmap(@AuthenticationPrincipal userDetails: UserDetails, model : Model,session: HttpSession):String {
         model.addAttribute("id",userDetails.username)
-        model.addAttribute("gym",session.getAttribute("sessionGym"))
-        println(session.getAttribute("sessionGym"))
+        model.addAttribute("gym",session.getAttribute("GymId"))
+        println(session.getAttribute("GymId"))
         return "Starreview"
     }
 

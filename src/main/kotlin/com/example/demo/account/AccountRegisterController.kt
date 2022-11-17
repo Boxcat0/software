@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping
 @Slf4j
 @Controller
 class AccountRegisterController(
-        @Autowired val accountService: AccountService
+        @Autowired val accountService: AccountService,
+        @Autowired val accountRepository: AccountRepository
         )
 {
     @GetMapping("/member_sign2")
@@ -20,10 +21,17 @@ class AccountRegisterController(
     private val log = LoggerFactory.getLogger("Controller2")
     @PostMapping("/member_sign2")//회원가입 로직
     fun processForm(account: Account):String{
-        log.info("account : $account")
-        val insertMember = accountService.saveAccount(account)
-        log.info("inserted member:$insertMember")
-        return "home"
+        val all:List<Account> = accountService.findAccount()
+        val target : Account = accountService.searchAccount(account.id, all)
+        return if(target.id == "null")
+        {
+            log.info("account : $account")
+            val insertMember = accountService.saveAccount(account)
+            log.info("inserted member:$insertMember")
+            "home"
+        } else {
+            "member_sign2"
+        }
     }
 
 }
