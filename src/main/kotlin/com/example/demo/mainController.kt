@@ -18,8 +18,8 @@ class mainController {
         val name: String = userDetails.username
         println(name)
         model.addAttribute("userName", name)
-        session.removeAttribute("sessionGym")
-        session.removeAttribute("sessionPosition")
+        session.removeAttribute("GymId")
+        session.removeAttribute("GymPosition")
         return "home"
     }
 

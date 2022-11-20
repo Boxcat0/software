@@ -17,6 +17,13 @@ class EventController {
     fun openMap():String {
         return "Map"
     }
+    @GetMapping("/remap")
+    fun openReMap(@AuthenticationPrincipal userDetails: UserDetails,
+                  model: Model,session: HttpSession):String{
+        session.removeAttribute("GymId")
+        session.removeAttribute("GymPosition")
+        return "Map"
+    }
     @GetMapping("/gym_data")
     fun data():String{
         return "gym_data.json"
@@ -33,14 +40,25 @@ class EventController {
                   model: Model,eventGym: eventGym,session: HttpSession
     ):String
     {
-        println(eventGym.name)
-        println(eventGym.position)
-        model.addAttribute("userName",userDetails.username)
-        session.setAttribute("GymId",eventGym.name)
-        session.setAttribute("GymPosition",eventGym.position)
-        model.addAttribute("GymId",eventGym.name)
-        model.addAttribute("GymPosition",eventGym.position)
-        return "eventPage"
+        if(session.getAttribute("GymId") == null)
+        {
+            println(eventGym.name)
+            println(eventGym.position)
+            model.addAttribute("userName",userDetails.username)
+            session.setAttribute("GymId",eventGym.name)
+            session.setAttribute("GymPosition",eventGym.position)
+            model.addAttribute("GymId",eventGym.name)
+            model.addAttribute("GymPosition",eventGym.position)
+            return "eventPage"
+        }
+        else{
+            println(eventGym.name+"session is here")
+            println(eventGym.position)
+            model.addAttribute("userName",userDetails.username)
+            model.addAttribute("GymId",session.getAttribute("GymId"))
+            model.addAttribute("GymPosition",session.getAttribute("GymPosition"))
+            return "eventPage"
+        }
     }
     /*@GetMapping("/middlePage")
     fun middle(@AuthenticationPrincipal userDetails: UserDetails,

@@ -15,10 +15,9 @@ class ReviewService(@Autowired private val db: ReviewRepository){
     fun removing(review : Review){
         db.delete(review)
     }
-    fun changing(review : Review, change : String)
+    fun findGymByStar(star:Double?):List<Review>
     {
-        review.reviews = change
-        db.save(review)
+        return db.findReviewByStar(star)
     }
     fun findGymByid(reviews : List<Review>,gym:String?):Review//gym을 기반으로 헬스장 탐색
     {
@@ -31,6 +30,10 @@ class ReviewService(@Autowired private val db: ReviewRepository){
             }
         }
         return Review(null,"null",null,"null",null)
+    }
+    fun findReviewByWord(reviews:String):List<Review>
+    {
+        return db.findReviewByWord(reviews)
     }
     fun SaveReview(review: Review) : Review
     {

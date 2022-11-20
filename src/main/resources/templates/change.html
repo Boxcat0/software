@@ -10,7 +10,8 @@
   <input type="hidden" name="id" th:value="${id}"><br/>
   password : <input type="text" name="password"><br/>
   <input type="hidden" name="roles" value="USER"/>
-  Gym : <input type = "text" name = "gym"><br/>
+  Gym : <td th:text = "${gym}">
+  <input type = "text" name = "gym" th:value ="${GymId}"><br/>
   변경할 리뷰 : <input type="text" name="reviews"/><br/>
   <input type="submit" value="Register"/>
 </form>

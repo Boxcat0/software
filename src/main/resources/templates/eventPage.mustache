@@ -7,15 +7,16 @@
         <h1>WELCOME</h1>
         {{#userName}}
             {{#GymId}}
-            <h3>NowUser : {{userName}}</h3>
-            <h3>GYM : {{GymId}}</h3>
-            <h4>position : {{GymPosition}}</h4>
+            <h3>로그인된 사용자 : {{userName}}</h3>
+            <h3>헬스장 : {{GymId}}</h3>
+            <h4>위치: {{GymPosition}}</h4>
             <a href="/logout" target="_self">Logout</a>
             <p>
-            <li><a href="/board">review create</a></li>
-            <li><a href="/review_delete">Delete review</a></li>
-            <li><a href="/gym_review">Gym separate Review</a></li>
-            <li><a href="/change_review">Review change</a></li>
+            <li><a href="/board">리뷰 작성</a></li>
+            <li><a href="/review_delete">리뷰 삭제</a></li>
+            <li><a href="/gym_review">헬스장 리뷰 조회하기</a></li>
+            <li><a href="/change_review">리뷰 변경하기</a></li>
+            <li><a href="/remap">헬스장 선택</a></li>
             </p>
             {{/GymId}}
         {{/userName}}

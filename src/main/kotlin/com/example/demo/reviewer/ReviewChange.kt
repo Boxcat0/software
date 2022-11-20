@@ -18,8 +18,10 @@ class ReviewChange(@Autowired private val pass: PasswordEncoder,
                    @Autowired val reviewRepository: ReviewRepository
                    ) {
     @GetMapping("/change_review")
-    fun intochange(@AuthenticationPrincipal user: UserDetails,model : Model): String{
+    fun intochange(@AuthenticationPrincipal user: UserDetails,model : Model, session: HttpSession
+                   ): String{
         model.addAttribute("id", user.username)
+        model.addAttribute("GymId",session.getAttribute("GymId"))
         return "change"
     }
 

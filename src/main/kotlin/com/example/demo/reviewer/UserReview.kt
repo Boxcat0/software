@@ -21,13 +21,13 @@ class UserReview(@Autowired private val pass: PasswordEncoder,
     {
         return "usercheck"
     }
-    @GetMapping("/{GymId}/gym_review")
+    @GetMapping("/gym_review")
     fun intocheck2(session: HttpSession, model: Model):String
     {
         model.addAttribute("gym",session.getAttribute("sessionGym"))
         return "gymcheck"
     }
-    @RequestMapping("/{GymId}/gym_review")
+    @RequestMapping("/gym_review")
     fun searchReview2(@AuthenticationPrincipal user: UserDetails,
                      session: HttpSession,
                      review: Review,
