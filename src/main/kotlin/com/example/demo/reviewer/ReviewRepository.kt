@@ -15,6 +15,6 @@ interface ReviewRepository: JpaRepository<Review, Review> {
     fun findReviewsBy(): List<Review>
     @Query("select reviews, star, id, gym from review where star = star")
     fun findReviewByStar(star :Double?): List<Review>
-    @Query("select reviews, star, id, gym from review where reviews like CONCAT('%',reviews,'%')")
-    fun findReviewByWord(reviews:String):List<Review>
+    /*@Query("select reviews, star, id, gym from review where reviews like CONCAT('%',reviews,'%')")
+    fun findReviewByWord(reviews:String):List<Review>*/
 }

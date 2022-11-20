@@ -34,7 +34,7 @@ class ReviewController(val service: ReviewService,
         model.addAttribute("name",userDetails.username)
         return "reviewer"
     }
-    @PostMapping("/find_word_review")
+    /*@PostMapping("/find_word_review")
     fun reviewWordFinding(review: Review,
                           @AuthenticationPrincipal userDetails: UserDetails,
                           model: Model
@@ -44,5 +44,5 @@ class ReviewController(val service: ReviewService,
         model.addAttribute("re",service.findReviewByWord(targetword))
         model.addAttribute("name",userDetails.username)
         return "reviewer"
-    }
+    }*/
 }

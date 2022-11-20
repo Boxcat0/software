@@ -31,10 +31,10 @@ class ReviewService(@Autowired private val db: ReviewRepository){
         }
         return Review(null,"null",null,"null",null)
     }
-    fun findReviewByWord(reviews:String):List<Review>
+    /*fun findReviewByWord(reviews:String):List<Review>
     {
         return db.findReviewByWord(reviews)
-    }
+    }*/
     fun SaveReview(review: Review) : Review
     {
         return db.save(review)

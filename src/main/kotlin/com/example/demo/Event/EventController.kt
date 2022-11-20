@@ -12,6 +12,12 @@ import javax.servlet.http.HttpSession
 
 @Controller
 class EventController {
+    @GetMapping("/myPage")
+    fun myPage(@AuthenticationPrincipal userDetails: UserDetails,
+               model: Model):String{
+        model.addAttribute("userName",userDetails.username)
+        return "UserPage"
+    }
 
     @GetMapping("/Map")
     fun openMap():String {

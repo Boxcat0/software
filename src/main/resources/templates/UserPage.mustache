@@ -4,13 +4,16 @@
 <body>
 <div class = "content">
     <div>
-        <h1>어디가GYM?</h1>
+        <h1>마이 페이지</h1>
         {{#userName}}
             <h3>USER : {{userName}}</h3>
             <a href="/logout" target="_self">Logout</a>
             <p>
-            <li><a href="/myPage">마이 페이지</a></li>
+            <li><a href="/allaccount">회원 조회</a></li>
+            <li><a href="/member_delete">회원 삭제</a></li>
             <li><a href="/Map">헬스장 선택</a></li>
+            <li><a href="/user_review">회원 리뷰 조회</a></li>
+            <li><a href="/">홈으로</a></li>
             </p>
         {{/userName}}
         {{^userName}}

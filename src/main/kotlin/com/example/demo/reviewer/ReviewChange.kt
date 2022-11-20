@@ -29,7 +29,7 @@ class ReviewChange(@Autowired private val pass: PasswordEncoder,
     fun changeReview(@AuthenticationPrincipal user: User,
                      account : Account,
                      session: HttpSession,
-                     review: Review
+                     review: Review,model : Model
     ): String{
         val dbPassword : String = user.password
         println(dbPassword)
@@ -48,6 +48,8 @@ class ReviewChange(@Autowired private val pass: PasswordEncoder,
             reviewService.SaveReview(finaltarget)
             return "redirect:/"
         }
+        model.addAttribute("id", user.username)
+        model.addAttribute("GymId",session.getAttribute("GymId"))
         return "change"
     }
 }
