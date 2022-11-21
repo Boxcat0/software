@@ -33,6 +33,7 @@ class ReviewService(@Autowired private val db: ReviewRepository){
         }
         return listReview
     }
+
     fun findReviewStarByGym(reviews: List<Review>, gym: String?): List<Review> {
         val listReview = ArrayList<Review>()
         for (i in 0..reviews.size-1) {

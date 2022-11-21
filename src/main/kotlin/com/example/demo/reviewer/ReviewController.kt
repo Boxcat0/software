@@ -48,7 +48,7 @@ class ReviewController(val service: ReviewService,
         model.addAttribute("GymId",review.gym)
         return "reviewer"
     }
-    @PostMapping("/find_word_review")
+    @PostMapping("/find_word_review")/*수정 하기, 마이페이지에서 진입시 접근 X*/
     fun reviewWordFinding(review: Review,
                           @AuthenticationPrincipal userDetails: UserDetails,
                           model: Model
@@ -58,11 +58,23 @@ class ReviewController(val service: ReviewService,
         val allReview:List<Review> = service.findReviews()
         val targetGym = review.gym.toString()
         println(targetGym)
-        val allReviewById : List<Review> = service.findReviewStarByGym(allReview,targetGym)
-        println(allReviewById)
-        model.addAttribute("re",service.findReviewByWord(allReviewById,targetword))
-        model.addAttribute("name",userDetails.username)
-        model.addAttribute("GymId",targetGym)
-        return "reviewer"
+        if(targetGym != "null")
+        {
+            val allReviewById : List<Review> = service.findReviewStarByGym(allReview,targetGym)
+            println(allReviewById)
+            model.addAttribute("re",service.findReviewByWord(allReviewById,targetword))
+            model.addAttribute("name",userDetails.username)
+            model.addAttribute("GymId",targetGym)
+            return "reviewer"
+        }
+        else
+        {
+            val allReviewById : List<Review> = service.findReviewStarById(allReview, userDetails.username)
+            println(userDetails)
+            model.addAttribute("re",service.findReviewByWord(allReviewById,targetword))
+            model.addAttribute("name",userDetails.username)
+            model.addAttribute("GymId",targetGym)
+            return "reviewer"
+        }
     }
 }
