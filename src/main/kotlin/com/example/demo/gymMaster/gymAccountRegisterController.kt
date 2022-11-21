@@ -20,8 +20,8 @@ class gymAccountRegisterController(@Autowired val service: gymAccountService) {
     fun registgymMasterPost(gymaccount:gymAccount):String{
         println(gymaccount)
         val all : List<gymAccount> = service.findGymAccount()
-        val target : gymAccount = service.searchAccount(gymaccount.id, all)
-        return if(target.id == "null") {
+        val target : gymAccount = service.searchAccount(gymaccount.gym, all)
+        return if(target.gym == "null") {
             val insert: gymAccount = service.saveAccount(gymaccount)
             log.info("inserted member:$insert")
             "home"

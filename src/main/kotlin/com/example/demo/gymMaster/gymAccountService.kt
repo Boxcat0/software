@@ -15,11 +15,11 @@ class gymAccountService(@Autowired private val repository: gymAccountRepository)
     }
     fun findGymAccount(): List<gymAccount> = repository.findGymAccountBy()
 
-    fun searchAccount(id: String, account : List<gymAccount>): gymAccount
+    fun searchAccount(gym: String, account : List<gymAccount>): gymAccount
     {
         for(i in 0..account.size-1)
         {
-            if(account[i].id == id)
+            if(account[i].gym == gym)
             {
                 return account[i]
             }
