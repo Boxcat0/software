@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.User
 import java.util.stream.Collectors
 import javax.persistence.*
 
-
 @Entity
 @Table(name = "Account")
 data class Account(

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <th><h1>REGIST PAGE</h1></th>
+</head>
+<body>
+<form method="post" action="/gymMaster">
+  Id : <input type="text" name="id"><br/>
+  password : <input type="text" name="pw"><br/>
+  <input type="hidden" name="gym" th:value="${GymId}"/>
+  <input type="hidden" name="roles" value="GYM"/>
+  <input type="submit" value="Register"/>
+</form>
+<a href="/">Back</a>
+</body>
+</html>

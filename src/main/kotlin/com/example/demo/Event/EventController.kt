@@ -18,7 +18,10 @@ class EventController {
         model.addAttribute("userName",userDetails.username)
         return "UserPage"
     }
-
+    @GetMapping("/Map2")
+    fun openMap2():String{
+        return "Map2"
+    }
     @GetMapping("/Map")
     fun openMap(session: HttpSession):String {
         session.removeAttribute("GymId")
@@ -42,6 +45,16 @@ class EventController {
     ):String{
         model.addAttribute("userName",userDetails.username)
         return "map_click"
+    }
+    @GetMapping("/map_click2")
+    fun clickeven():String{
+        return "map_click2"
+    }
+
+    @PostMapping("/map_click2")
+    fun mapclick2event(eventGym: eventGym,model: Model):String{
+        model.addAttribute("GymId",eventGym.name)
+        return "gymMaster"
     }
     @PostMapping("/map_click")
     fun gotoevent(@AuthenticationPrincipal userDetails: UserDetails,
