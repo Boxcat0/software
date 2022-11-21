@@ -20,7 +20,9 @@ class EventController {
     }
 
     @GetMapping("/Map")
-    fun openMap():String {
+    fun openMap(session: HttpSession):String {
+        session.removeAttribute("GymId")
+        session.removeAttribute("GymPosition")
         return "Map"
     }
     @GetMapping("/remap")
@@ -58,7 +60,7 @@ class EventController {
             return "eventPage"
         }
         else{
-            println(eventGym.name+"session is here")
+            println(eventGym.name+" session is here")
             println(eventGym.position)
             model.addAttribute("userName",userDetails.username)
             model.addAttribute("GymId",session.getAttribute("GymId"))

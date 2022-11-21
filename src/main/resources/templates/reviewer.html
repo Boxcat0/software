@@ -8,15 +8,15 @@
     <h3>현재 로그인된 사용자 : <td th:text ="${name}"></h3>
     <form method="post" action="/find_review">
       별점 조회:<input type="number" name="star">
-      <input type="hidden" name="gym" value="target">
-      <input type="hidden" name="id" value="target">
-      <input type="hidden" name="reviews" value="..">
+      <input type="hidden" name="gym" th:value="${GymId}">
+      <input type="hidden" name="id" th:value="${name}">
+      <input type="hidden" name="reviews" value="target">
       <input type="submit" value="검색"/>
     </form>
     <form method="post" action="/find_word_review">
-      <input type="hidden" name="star" value ="..">
-      <input type="hidden" name="gym" value="target">
-      <input type="hidden" name="id" value="target">
+      <input type="hidden" name="star" value ="1">
+      <input type="hidden" name="gym" th:value="${GymId}">
+      <input type="hidden" name="id" th:value="${name}">
       키워드 별 조회 : <input type="text" name="reviews" list="depList">
       <datalist id="depList">
         <option value="헬스장"></option>
@@ -43,7 +43,7 @@
       </tbody>
     </table>
     <a href="/">메인 페이지</a>
-    <a href="/map_click">헬스장 화면</a>
+    <a href="/Map">헬스장 선택</a>
     <a href="/myPage">마이 페이지</a>
   </div>
 </div>
