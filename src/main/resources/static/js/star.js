@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function(){
     //저장 전송전 체크
     document.querySelector('#save').addEventListener('click', function(e){
         //별점 선택 안했으면 메시지 표시
-        if(rating.rate == 0){
+        if(rating.rate === 0){
             rating.showMessage('rate');
             return false;
         }
@@ -46,8 +46,33 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         //폼 초기화
         alert(`별점: ${rating.rate}\n제목: ${document.querySelector('.review_t_textarea').value}\n내용: ${document.querySelector('.review_textarea').value}`);
-        //alert(``);
-        //alert(``);
+        var gymId = localStorage.getItem('gym');
+        var userId = localStorage.getItem('userName');
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action','/starsave')
+        document.body.appendChild(form);
+        var input = document.createElement('input');
+        input.setAttribute('type','hidden')
+        input.setAttribute('name', 'star');
+        input.setAttribute('value',rating.rate);
+        form.appendChild(input);
+        input = document.createElement('input');
+        input.setAttribute('type','hidden')
+        input.setAttribute('name', 'reviews');
+        input.setAttribute('value',document.querySelector('.review_textarea').value);
+        form.appendChild(input);
+        input = document.createElement('input');
+        input.setAttribute('type','hidden');
+        input.setAttribute('name','gym');
+        input.setAttribute('value',gymId);
+        form.appendChild(input);
+        input = document.createElement('input');
+        input.setAttribute('type','hidden');
+        input.setAttribute('name','id');
+        input.setAttribute('value',userId);
+        form.appendChild(input);
+        form.submit();
         rating.setRate(0);
         document.querySelector('.review_t_textarea').value = '';
         document.querySelector('.review_textarea').value = '';

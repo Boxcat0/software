@@ -15,7 +15,6 @@ class gymAccountRegisterController(@Autowired val service: gymAccountService) {
         return "gymMaster"
     }
     private val log = LoggerFactory.getLogger("Controller2")
-
     @PostMapping("/gymMaster")
     fun registgymMasterPost(gymaccount:gymAccount):String{
         println(gymaccount)

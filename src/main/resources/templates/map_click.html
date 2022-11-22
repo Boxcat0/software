@@ -10,18 +10,18 @@
 <body>
 <script>
   var Gymname = localStorage.getItem('title');
-  var Gymposition = localStorage.getItem('address')
+  var Gymposition = localStorage.getItem('address');
   var form = document.createElement('form');
   form.setAttribute('method', 'post');
-  form.setAttribute('action','/map_click')
+  form.setAttribute('action','/map_click');
   document.body.appendChild(form);
   var input = document.createElement('input');
-  input.setAttribute('type','hidden')
+  input.setAttribute('type','hidden');
   input.setAttribute('name', 'name');
   input.setAttribute('value',Gymname);
   form.appendChild(input);
   input = document.createElement('input');
-  input.setAttribute('type','hidden')
+  input.setAttribute('type','hidden');
   input.setAttribute('name', 'position');
   input.setAttribute('value',Gymposition);
   form.appendChild(input);
