@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang = "kr" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div class = "content">
+    <div>
+        <th><h1>리뷰 조회</h1></th>
+        <h3>현재 로그인된 사용자 : <td th:text ="${name}"></h3>
+        <form method="post" action="/search_reservation">
+            <input type="hidden" name="gym" th:value="${GymId}">
+            <input type="hidden" name="id" th:value="target">
+            <input type="hidden" name="name" value="target">
+            날짜 별 조회: <input type="date" name="time">
+            <input type="submit" value="검색"/>
+        </form>
+        <table border="1">
+            <tr>
+                <th>예약자 이름</th>
+                <th>예약자 시간</th>
+                <th>ID</th>
+            </tr>
+            <tbody>
+            <tr th:each = "re:${re}">
+                <td th:text ="${re.name}">
+                <td th:text ="${re.time}">
+                <td th:text ="${re.id}">
+            </tr>
+            </tbody>
+        </table>
+        <a href="/">메인 페이지</a>
+        <a href="/map_click">페이지로 돌아가기</a>
+    </div>
+</div>
+</body>
+</html>
