@@ -5,12 +5,12 @@
 <div class = "content">
     <div>
         <th><h1>리뷰 조회</h1></th>
-        <h3>현재 로그인된 사용자 : <td th:text ="${name}"></h3>
+        <h3>현재 로그인된 사용자 : <td th:text ="${userName}"></h3>
         <form method="post" action="/search_reservation">
             <input type="hidden" name="gym" th:value="${GymId}">
             <input type="hidden" name="id" th:value="target">
             <input type="hidden" name="name" value="target">
-            날짜 별 조회: <input type="date" name="time">
+            날짜 별 조회: <input type="date" name="times">
             <input type="submit" value="검색"/>
         </form>
         <table border="1">
@@ -22,7 +22,7 @@
             <tbody>
             <tr th:each = "re:${re}">
                 <td th:text ="${re.name}">
-                <td th:text ="${re.time}">
+                <td th:text ="${re.times}">
                 <td th:text ="${re.id}">
             </tr>
             </tbody>

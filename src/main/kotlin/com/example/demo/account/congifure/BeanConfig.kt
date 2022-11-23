@@ -30,7 +30,8 @@ class BeanConfig {
                         "admin1234",
                         mutableSetOf(
                                 AccountRole.ADMIN,
-                                AccountRole.USER
+                                AccountRole.USER,
+                            AccountRole.GYM
                         )
                 )
                 accountService.saveAccount(admin)

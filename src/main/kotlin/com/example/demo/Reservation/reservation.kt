@@ -3,6 +3,7 @@ package com.example.demo.Reservation
 import org.springframework.data.jpa.repository.Temporal
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.format.annotation.DateTimeFormat
+import java.time.LocalDate
 import java.util.*
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -18,6 +19,6 @@ data class reservation(
     var id : String,
     var name: String,
     var gym : String,
-    @Temporal(TemporalType.DATE)
-    var time : Date
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    var times : String
 )

@@ -5,11 +5,11 @@
   <th><h1>예약 하기</h1></th>
 </head>
 <body>
-<form method="post" action="/resevation">
+<form method="post" action="/reservation">
   <input type="hidden" name="id" th:value="${userName}">
   <input type="hidden" name="gym" th:value="${GymId}">
   예약자 성함:<input type="text" name="name"/></br>
-  예약 시간: <input type="date"  name="time">
+  예약 시간: <input type="Date"  name="times">
   <input type="submit" value="Register"/>
 </form>
 <a href="/map_click">Back</a>
