@@ -13,6 +13,9 @@ class gymAccountService(@Autowired private val repository: gymAccountRepository)
     {
         return repository.save(gymAccount)
     }
+    fun gymRemove(account : gymAccount){
+        repository.delete(account)
+    }
     fun findGymAccount(): List<gymAccount> = repository.findGymAccountBy()
     fun searchAccountByNumber(number:Long?, account: List<gymAccount>):gymAccount
     {
@@ -30,6 +33,17 @@ class gymAccountService(@Autowired private val repository: gymAccountRepository)
         for(i in 0..account.size-1)
         {
             if(account[i].gym == gym)
+            {
+                return account[i]
+            }
+        }
+        return gymAccount(null,"null","null","null",mutableSetOf(AccountRole.GYM))
+    }
+    fun searchAccountById(id: String, account : List<gymAccount>): gymAccount
+    {
+        for(i in 0..account.size-1)
+        {
+            if(account[i].id == id)
             {
                 return account[i]
             }

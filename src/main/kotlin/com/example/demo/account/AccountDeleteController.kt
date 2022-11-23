@@ -1,5 +1,7 @@
 package com.example.demo.account
 
+import com.example.demo.gymMaster.gymAccount
+import com.example.demo.gymMaster.gymAccountService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.userdetails.User
@@ -14,7 +16,8 @@ import javax.servlet.http.HttpSession
 @Controller
 class AccountDeleteController(@Autowired val accountService : AccountService,
                               @Autowired val accountRepository: AccountRepository,
-                              @Autowired private val pass: PasswordEncoder
+                              @Autowired private val pass: PasswordEncoder,
+                              @Autowired val gymService: gymAccountService
 ) {
     @GetMapping("/member_delete")
     fun deletestart(): String{
@@ -30,10 +33,20 @@ class AccountDeleteController(@Autowired val accountService : AccountService,
         val oldPassword : String = user.password//현재 로그인된 사용자
         if(pass.matches(newPassword, oldPassword))//로그인된 사용자와 입력된 비밀번호 비교
         {
-            val deleteTarget : Account = accountRepository.findAccountById(user.username)
-            accountService.remove(deleteTarget)
-            session.invalidate()
-            println("Delete Sucess")
+            if(gymService.searchAccountById(account.id,gymService.findGymAccount()).id != "null")
+            {
+                val deleteTarget : Account = accountRepository.findAccountById(user.username)
+                accountService.remove(deleteTarget)
+                gymService.gymRemove(gymService.searchAccountById(account.id,gymService.findGymAccount()))
+                session.invalidate()
+                println("Delete Sucess")
+            }
+            else{
+                val deleteTarget : Account = accountRepository.findAccountById(user.username)
+                accountService.remove(deleteTarget)
+                session.invalidate()
+                println("Delete Sucess")
+            }
             return "home"
         }
         else{

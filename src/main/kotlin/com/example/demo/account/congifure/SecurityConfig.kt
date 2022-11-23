@@ -38,7 +38,8 @@ class SecurityConfig(@Autowired private val accountService: AccountService,
                 .and()
                 .authorizeRequests()
                 .antMatchers("/allaccount").access("hasRole('ADMIN')")
-                .antMatchers("/allreviews").access("hasRole('USER')")
+                .antMatchers("/board").access("hasRole('USER')")
+            .antMatchers("/gymMasterRegist").access("hasRole('ADMIN')")
                 .anyRequest().authenticated()
     }
 }

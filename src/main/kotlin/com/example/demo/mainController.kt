@@ -28,7 +28,6 @@ class mainController {
     fun welcom2(@AuthenticationPrincipal userDetails: UserDetails, session: HttpSession,model : Model):String {
         val name: String = userDetails.username
         println(name)
-        session.getAttribute("user")
         model.addAttribute("userName",name)
         return "home"
     }
