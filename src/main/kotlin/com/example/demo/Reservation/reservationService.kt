@@ -18,6 +18,17 @@ class reservationService(@Autowired val repository: reservationRepository) {
     {
         return repository.findBy()
     }
+    fun findReservationByNumber(reservation: List<reservation>, number_reservation:Long?):reservation
+    {
+        for(i in 0..reservation.size-1)
+        {
+            if(reservation[i].number_reservation == number_reservation)
+            {
+                return reservation[i]
+            }
+        }
+        return reservation(null,"null","null","null","0000-00-00")
+    }
 
     fun removeReservation(reservation: reservation)
     {

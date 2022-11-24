@@ -22,6 +22,11 @@ class mainController {
         session.removeAttribute("GymPosition")
         return "home"
     }
+    @GetMapping("/adminPage")
+    fun adminPage(@AuthenticationPrincipal userDetails: UserDetails,model: Model):String{
+        model.addAttribute("userName", userDetails.username)
+        return "adminPage"
+    }
 
 
     @GetMapping("/home")

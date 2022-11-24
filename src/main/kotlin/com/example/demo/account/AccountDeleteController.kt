@@ -1,11 +1,11 @@
 package com.example.demo.account
 
-import com.example.demo.gymMaster.gymAccount
 import com.example.demo.gymMaster.gymAccountService
+import com.example.demo.reviewer.Review
+import com.example.demo.reviewer.ReviewService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.userdetails.User
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
@@ -17,7 +17,8 @@ import javax.servlet.http.HttpSession
 class AccountDeleteController(@Autowired val accountService : AccountService,
                               @Autowired val accountRepository: AccountRepository,
                               @Autowired private val pass: PasswordEncoder,
-                              @Autowired val gymService: gymAccountService
+                              @Autowired val gymService: gymAccountService,
+                              @Autowired val reviewService: ReviewService
 ) {
     @GetMapping("/member_delete")
     fun deletestart(): String{
@@ -42,8 +43,11 @@ class AccountDeleteController(@Autowired val accountService : AccountService,
                 println("Delete Sucess")
             }
             else{
+                val targetReview : List<Review> = reviewService.findReviews()
+                val targetReviewById:List<Review> = reviewService.findReviewStarById(targetReview,user.username)
                 val deleteTarget : Account = accountRepository.findAccountById(user.username)
                 accountService.remove(deleteTarget)
+                reviewService.changeMemberReview(targetReviewById)
                 session.invalidate()
                 println("Delete Sucess")
             }

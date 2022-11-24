@@ -24,7 +24,7 @@ class permitController(@Autowired val service: gymAccountService,
     @PostMapping("/gymMasterRegist")
     fun userToGym2(gymAccount: gymAccount,model: Model
     ):String{
-        val permitAccount :gymAccount =service.searchAccountByNumber(gymAccount.number,service.findGymAccount())
+        val permitAccount :gymAccount =service.searchAccountByNumber(gymAccount.number_gymaccount,service.findGymAccount())
         if(permitAccount.id == "null")
         {
             val gymList:List<gymAccount> = service.findGymAccount()

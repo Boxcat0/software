@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang = "kr" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div class = "content">
+  <div>
+    <th><h1>내 예약 조회</h1></th>
+    <h3>현재 로그인된 사용자 : <td th:text ="${userName}"></h3>
+    <tr>
+      <form method="post" action="/admin/delete_reservation2">
+        <h5>예약 삭제</h5>
+        삭제 번호:<input type="text" name="number"/>
+        <input type="hidden" name="gym" value="gym">
+        <input type="hidden" name="name" value="name">
+        <input type="hidden" name="id" value="target">
+        <input type="hidden" name="times" value ="0000-00-00">
+        <input type="submit" value="삭제"/></br>
+      </form>
+    </tr>
+    <form method="post" action="/admin/Time">
+      <h5>예약 조회</h5>
+      <input type="hidden" name="gym" value="target">
+      <input type="hidden" name="id" value="target">
+      <input type="hidden" name="name" value="target">
+      날짜 별 조회: <input type="date" name="times">
+      <input type="submit" value="검색"/>
+    </form></br>
+    <form method="post" action="/admin/Gym">
+      헬스장 별 조회 : <input type="text" name="gym">
+      <input type="hidden" name="id" value="target">
+      <input type="hidden" name="name" value="target">
+      <input type="hidden" name="times" value="0000-00-00">
+      <input type="submit" value="검색"/>
+    </form></br>
+    <form method="post" action="/admin/Name">
+      <input type="hidden" name="gym" value = "target">
+      <input type="hidden" name="id" value="target">
+      예약자 이름 별 조회: <input type="text" name="name">
+      <input type="hidden" name="times" value="0000-00-00">
+      <input type="submit" value="검색"/>
+    </form></br>
+    <table border="1">
+      <tr>
+        <th>번호</th>
+        <th>ID</th>
+        <th>예약자 이름</th>
+        <th>예약자 시간</th>
+        <th>예약 헬스장</th>
+      </tr>
+      <tbody>
+      <tr th:each = "re:${re}">
+        <td th:text ="${re.number}">
+        <td th:text ="${re.id}">
+        <td th:text ="${re.name}">
+        <td th:text ="${re.times}">
+        <td th:text ="${re.gym}">
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<form method="post" action="/admin/reset">
+  <input type="hidden" name="gym" value = "target">
+  <input type="hidden" name="id" value="target">
+  <input type="hidden" name="name" value="target">
+  <input type="hidden" name="times" value="0000-00-00">
+  <input type="submit" value="초기화"/>
+</form></br>
+<a href="/">메인 페이지</a>
+<a href="/adminPage">페이지로 돌아가기</a>
+</body>
+</html>

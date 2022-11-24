@@ -9,7 +9,7 @@ import javax.persistence.*
 data class Review(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)//Default value 문제 생기면 AUTO로 바꿔주면 된다.
-        var number : Long? = null,
+        var number_review : Long? = null,
         @Column("id")
         var id : String,
         @Column("star")

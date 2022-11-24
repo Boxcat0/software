@@ -15,7 +15,7 @@ import javax.persistence.TemporalType
 @Table(name="reservation")
 data class reservation(
     @Id @GeneratedValue
-    var number: Long? = null,
+    var number_reservation: Long? = null,
     var id : String,
     var name: String,
     var gym : String,

@@ -9,7 +9,7 @@ import javax.persistence.*
 @Table(name = "Account")
 data class Account(
         @Id @GeneratedValue
-        var number: Long? = null,//기본 키
+        var number_account: Long? = null,//기본 키
         var id: String,
         var password: String,
         @Enumerated(EnumType.STRING)

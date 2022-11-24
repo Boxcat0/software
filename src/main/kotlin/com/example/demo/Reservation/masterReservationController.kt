@@ -20,6 +20,15 @@ class masterReservationController(@Autowired val service: reservationService,
                                   @Autowired val gymService : gymAccountService,
                                   @Autowired val accountService: AccountService
 ) {
+    @GetMapping("/adminReservationCheck")
+    fun checkAdmin(@AuthenticationPrincipal userDetails: UserDetails,
+                   session: HttpSession, model: Model):String
+    {
+        model.addAttribute("userName",userDetails.username)
+        val allReservation : List<reservation> = service.findReservationBy()
+        model.addAttribute("re",allReservation)
+        return "adminReservationCheck"
+    }
 
     @GetMapping("/reservationCheck")
     fun check(@AuthenticationPrincipal userDetails: UserDetails,

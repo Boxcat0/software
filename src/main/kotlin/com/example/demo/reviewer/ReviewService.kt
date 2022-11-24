@@ -17,6 +17,14 @@ class ReviewService(@Autowired private val db: ReviewRepository){
     fun removing(review : Review){
         db.delete(review)
     }
+    fun changeMemberReview(review: List<Review>)
+    {
+        for(i in 0.. review.size-1)
+        {
+            review[i].id = "탈퇴한 사용자입니다."
+            db.save(review[i])
+        }
+    }
     fun findGymByStar(star:Double?):List<Review>
     {
         return db.findReviewByStar(star)
@@ -32,6 +40,17 @@ class ReviewService(@Autowired private val db: ReviewRepository){
             }
         }
         return listReview
+    }
+    fun findReviewByNumber(reviews: List<Review>, number_review:Long?):Review
+    {
+        for(i in 0..reviews.size-1)
+        {
+            if(reviews[i].number_review == number_review)
+            {
+                return reviews[i]
+            }
+        }
+        return Review(null,"null",null,"null",null)
     }
 
     fun findReviewStarByGym(reviews: List<Review>, gym: String?): List<Review> {

@@ -7,7 +7,7 @@ import javax.persistence.*
 @Table(name = "gym_account")
 data class gymAccount(
     @Id @GeneratedValue
-    var number: Long? = null,//기본 키
+    var number_gymaccount: Long? = null,//기본 키
     var id: String,
     var pw: String,
     var gym: String,

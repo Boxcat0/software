@@ -4,6 +4,7 @@ import com.example.demo.account.Account
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -17,7 +18,34 @@ class ReviewDeleteController(@Autowired private val pass: PasswordEncoder,
                              @Autowired val reviewService: ReviewService,
                              @Autowired val reviewRepository: ReviewRepository,
 ) {
+    @GetMapping("/adminReviewDelete")
+    fun adminDelete(@AuthenticationPrincipal userDetails: UserDetails,model: Model):String{
+        val allReview :List<Review> = reviewService.findReviews()
+        model.addAttribute("re",allReview)
+        model.addAttribute("userName",userDetails.username)
+        return "adminReviewDelete"
+    }
 
+    @PostMapping("/adminReviewDelete")
+    fun adminDeleteReview(@AuthenticationPrincipal userDetails: UserDetails,model: Model,review: Review):String
+    {
+        val allReview:List<Review> = reviewService.findReviews()
+        val targetReview : Review = reviewService.findReviewByNumber(allReview, review.number_review)
+        if(targetReview.id !="null")
+        {
+            reviewService.removing(targetReview)
+            model.addAttribute("userName",userDetails.username)
+            val allReview2:List<Review> = reviewService.findReviews()
+            model.addAttribute("re",allReview2)
+            return "adminReviewDelete"
+        }
+        else
+        {
+            model.addAttribute("re",allReview)
+            model.addAttribute("userName",userDetails.username)
+            return "adminReviewDelete"
+        }
+    }
     @GetMapping("/review_delete")
     fun intodelete(model: Model, session: HttpSession): String{
         model.addAttribute("gym",session.getAttribute("GymId"))
@@ -36,7 +64,6 @@ class ReviewDeleteController(@Autowired private val pass: PasswordEncoder,
         if(pass.matches(newPassword, oldPassword))//회원 확인
         {
             val deleteTargetid : List<Review> = reviewRepository.findReviewById(targetid)//아이디 기준으로 리뷰 조회
-            println(deleteTargetid)
             val finaltarget : Review = reviewService.findGymByid(deleteTargetid,targetgym)//아이디로 조회한 헬스장을 헬스장 번호로 조회
             reviewService.removing(finaltarget)//삭제
             println("Delete Sucess")

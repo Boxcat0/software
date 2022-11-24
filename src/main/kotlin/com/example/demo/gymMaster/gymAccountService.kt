@@ -17,11 +17,11 @@ class gymAccountService(@Autowired private val repository: gymAccountRepository)
         repository.delete(account)
     }
     fun findGymAccount(): List<gymAccount> = repository.findGymAccountBy()
-    fun searchAccountByNumber(number:Long?, account: List<gymAccount>):gymAccount
+    fun searchAccountByNumber(number_gymaccount:Long?, account: List<gymAccount>):gymAccount
     {
         for(i in 0..account.size-1)
         {
-            if(account[i].number == number)
+            if(account[i].number_gymaccount == number_gymaccount)
             {
                 return account[i]
             }

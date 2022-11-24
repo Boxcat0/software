@@ -29,7 +29,7 @@ class BeanConfig {
                     "register123",
                     "register1234",
                     mutableSetOf(
-                        AccountRole.GYM
+                        AccountRole.REGIST
                     )
                 )
                 accountService.saveAccount(regist)
