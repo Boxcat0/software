@@ -21,6 +21,10 @@ class reservationController(@Autowired val service: reservationService,
                 model: Model,
                 session: HttpSession
                 ):String{
+        val now : LocalDate = LocalDate.now()
+        val formatter : DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val todayDay : String = now.format(formatter)
+        model.addAttribute("today",todayDay)
         model.addAttribute("userName",userDetails.username)
         model.addAttribute("GymId",session.getAttribute("GymId"))
         return "rev"
@@ -32,12 +36,11 @@ class reservationController(@Autowired val service: reservationService,
                  @AuthenticationPrincipal userDetails: UserDetails
     ):String{
         val now : LocalDate = LocalDate.now()
-        println(now)
         val formatter : DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val todayDay : String = now.format(formatter)
-        println(todayDay)
         if(reservation.times < todayDay)
         {
+            model.addAttribute("today",todayDay)
             model.addAttribute("userName",userDetails.username)
             model.addAttribute("GymId",session.getAttribute("GymId"))
             return "rev"
@@ -54,6 +57,7 @@ class reservationController(@Autowired val service: reservationService,
                 return "map_click"
             }
             else{
+                model.addAttribute("today",todayDay)
                 model.addAttribute("userName",userDetails.username)
                 model.addAttribute("GymId",session.getAttribute("GymId"))
                 return "rev"

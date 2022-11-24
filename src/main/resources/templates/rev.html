@@ -5,6 +5,8 @@
   <th><h1>예약 하기</h1></th>
 </head>
 <body>
+<h3>현재 로그인된 사용자 : <td th:text ="${userName}"></h3>
+<h4>해당 날짜 이전의 예약은 불가능 합니다.:<td th:text="${today}"></h4>
 <form method="post" action="/reservation">
   <input type="hidden" name="id" th:value="${userName}">
   <input type="hidden" name="gym" th:value="${GymId}">

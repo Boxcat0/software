@@ -12,14 +12,16 @@
   <div>
     <th><h1>내 예약 조회</h1></th>
     <h3>현재 로그인된 사용자 : <td th:text ="${userName}"></h3>
-    <form method="post" action="/delete_reservation2">
-      <h5>예약 삭제</h5>
-      예약 헬스장 : <input type="hidden" name="gym">
-      예약자 이름:<input type="text" name="name">
-      <input type="hidden" name="id" th:value="${userName}">
-      예약 날짜:<input type="date" name="times">
-      <input type="submit" value="삭제"/></br>
-    </form>
+    <tr>
+      <form method="post" action="/delete_reservation2">
+        <h5>예약 삭제</h5>
+        예약 헬스장 : <input type="hidden" name="gym">
+        예약자 이름:<input type="text" name="name">
+        <input type="hidden" name="id" th:value="${userName}">
+        예약 날짜:<input type="date" name="times">
+        <input type="submit" value="삭제"/></br>
+      </form>
+    </tr>
     <form method="post" action="/search/Time">
       <h5>예약 조회</h5>
       <input type="hidden" name="gym" value="target">
