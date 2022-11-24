@@ -25,6 +25,24 @@ class BeanConfig {
             lateinit var accountService: AccountService
             @Throws(Exception::class)
             override fun run(args: ApplicationArguments) {
+                val regist = Account(null,
+                    "register123",
+                    "register1234",
+                    mutableSetOf(
+                        AccountRole.GYM
+                    )
+                )
+                accountService.saveAccount(regist)
+            }
+        }
+    }*/
+    /*@Bean // 데이터 날아가는거 대비 비상 아이디 선언
+    fun applicationRunner(): ApplicationRunner {
+        return object : ApplicationRunner {
+            @Autowired
+            lateinit var accountService: AccountService
+            @Throws(Exception::class)
+            override fun run(args: ApplicationArguments) {
                 val admin = Account(null,
                         "admin12",
                         "admin1234",

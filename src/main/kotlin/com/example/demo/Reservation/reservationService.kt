@@ -44,6 +44,25 @@ class reservationService(@Autowired val repository: reservationRepository) {
             return reservationId
         }
     }
+    fun findEveryReservationById(reservation : List<reservation>,id:String):List<reservation>
+    {
+        val reservationId = ArrayList<reservation>()
+        if(reservation.size == 0)
+        {
+            return reservationId
+        }
+        else
+        {
+            for(i in 0..reservation.size-1)
+            {
+                if(reservation[i].id == id)
+                {
+                    reservationId.add(reservation[i])
+                }
+            }
+            return reservationId
+        }
+    }
     fun findEveryReservationByGym(reservation : List<reservation>,gym:String):List<reservation>
     {
         val reservationId = ArrayList<reservation>()
@@ -63,11 +82,9 @@ class reservationService(@Autowired val repository: reservationRepository) {
             return reservationId
         }
     }
-    fun findEveryReservationById(reservation : List<reservation>,name:String,times: String):List<reservation>
+    fun findEveryReservationByName(reservation : List<reservation>,name:String):List<reservation>
     {
-        println(reservation)
         val reservationId = ArrayList<reservation>()
-        println(reservationId.size)
         if(reservation.size == 0)
         {
             return reservationId
@@ -76,12 +93,32 @@ class reservationService(@Autowired val repository: reservationRepository) {
         {
             for(i in 0..reservation.size-1)
             {
-                if(reservation[i].name == name && reservation[i].times == times)
+                if(reservation[i].name == name)
                 {
                     reservationId.add(reservation[i])
                 }
             }
             return reservationId
         }
+    }
+    fun findEveryReservationByNameTime(reservation : List<reservation>,name:String,times: String):reservation
+    {
+        var reservationId :reservation
+        if(reservation.size == 0)
+        {
+            return reservation(null,"null","null","null","0000-00-00")
+        }
+        else
+        {
+            for(i in 0..reservation.size-1)
+            {
+                if(reservation[i].name == name && reservation[i].times == times)
+                {
+                    reservationId = reservation[i]
+                    return reservationId
+                }
+            }
+        }
+        return reservation(null,"null","null","null","0000-00-00")
     }
 }

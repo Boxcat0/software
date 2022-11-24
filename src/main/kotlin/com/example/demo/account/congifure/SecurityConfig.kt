@@ -39,6 +39,7 @@ class SecurityConfig(@Autowired private val accountService: AccountService,
                 .authorizeRequests()
                 .antMatchers("/allaccount").access("hasRole('ADMIN')")
                 .antMatchers("/board").access("hasRole('USER')")
+            .antMatchers("/Map2").access("hasRole('GYM')")
             .antMatchers("/gymMasterRegist").access("hasRole('ADMIN')")
             .antMatchers("/reservationCheck").access("hasRole('GYM')")
                 .anyRequest().authenticated()

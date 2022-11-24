@@ -46,6 +46,35 @@ class masterReservationController(@Autowired val service: reservationService,
             return "map_click"
         }
     }
+    @PostMapping("/delete_reservation")
+    fun deleteRev(@AuthenticationPrincipal userDetails: UserDetails,
+                  reservation : reservation,
+                  model: Model,
+                  session : HttpSession
+    ):String
+    {
+
+        val reservationAll : List<reservation> = repository.findBy()
+        val reservationAllByName : reservation = service. findEveryReservationByNameTime(reservationAll,reservation.name,reservation.times)
+        if(reservationAllByName.id =="null")
+        {
+            model.addAttribute("userName",userDetails.username)
+            model.addAttribute("GymId",session.getAttribute("GymId"))
+            val gym : String = session.getAttribute("GymId").toString()
+            val reservationAllByGym : List<reservation> = service.findEveryReservationByGym(reservationAll,gym)
+            model.addAttribute("re",reservationAllByGym)
+            return "reservationCheck"
+        }
+        else{
+            model.addAttribute("userName",userDetails.username)
+            model.addAttribute("GymId",session.getAttribute("GymId"))
+            service.removeReservation(reservationAllByName)
+            val gym : String = session.getAttribute("GymId").toString()
+            val reservationAllByGym : List<reservation> = service.findEveryReservationByGym(reservationAll,gym)
+            model.addAttribute("re",reservationAllByGym)
+            return "reservationCheck"
+        }
+    }
 
     @PostMapping("/search_reservation")
     fun findRev(@AuthenticationPrincipal userDetails: UserDetails,

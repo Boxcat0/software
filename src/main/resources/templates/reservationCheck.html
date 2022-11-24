@@ -4,8 +4,15 @@
 <body>
 <div class = "content">
     <div>
-        <th><h1>리뷰 조회</h1></th>
+        <th><h1>예약 조회</h1></th>
         <h3>현재 로그인된 사용자 : <td th:text ="${userName}"></h3>
+        <form method="post" action="/delete_reservation">
+            <input type="hidden" name="gym" th:value="${GymId}">
+            예약자 이름:<input type="test" name="name">
+            <input type="hidden" name="id" value="target">
+            예약 날짜:<input type="date" name="times">
+            <input type="submit" value="삭제"/></br>
+        </form>
         <form method="post" action="/search_reservation">
             <input type="hidden" name="gym" th:value="${GymId}">
             <input type="hidden" name="id" th:value="target">
