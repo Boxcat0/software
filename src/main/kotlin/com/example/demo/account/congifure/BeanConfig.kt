@@ -49,6 +49,7 @@ class BeanConfig {
                         mutableSetOf(
                                 AccountRole.ADMIN,
                                 AccountRole.USER,
+                                AccountRole.REGIST,
                             AccountRole.GYM
                         )
                 )

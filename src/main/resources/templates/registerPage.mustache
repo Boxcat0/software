@@ -3,25 +3,21 @@
 <body>
 <div class = "content">
     <div>
-        <h1>어디가GYM?</h1>
+        <h1>어디가GYM?-가입 페이지</h1>
         {{#userName}}
             <h3>USER : {{userName}}</h3>
             <a href="/logout" target="_self">Logout</a>
             <p>
-            <li><a href="/myPage">마이 페이지</a></li>
-            <li><a href="/adminPage">관리자 페이지(관리자ONLY)</a></li>
-            <li><a href="/registerPage">회원 가입 페이지</a></li>
-            <li><a href="/gymMasterPage">헬스장 점주 페이지</a></li>
-            <li><a href="/Map">헬스장 선택</a></li>
+            <li><a href="/member_sign2">일반 회원 가입</a></li>
+            <li><a href="/Map2">헬스장 가입</a></li>
+            <li><a href="/">홈으로</a></li>
             </p>
         {{/userName}}
         {{^userName}}
             <p>
             <h3>NowUser : Please login</h3>
             <a href="/login" target="_self">Login</a>
-            <p>
-            <li><a href="/member_sign2">Regist</a></li>
-            </p>
+            <li><a href="/">홈으로</a></li>
         {{/userName}}
     </div>
 </div>

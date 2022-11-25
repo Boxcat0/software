@@ -39,6 +39,7 @@ class SecurityConfig(@Autowired private val accountService: AccountService,
                 .authorizeRequests()
                 .antMatchers("/allaccount").access("hasRole('ADMIN')")
             .antMatchers("/adminPage").access("hasRole('ADMIN')")
+            .antMatchers("/registerPage").access("hasRole('REGIST')")
             .antMatchers("/adminReviewDelete").access("hasRole('ADMIN')")
                 .antMatchers("/board").access("hasRole('USER')")
             .antMatchers("/member_sign2").access("hasRole('REGIST')")
