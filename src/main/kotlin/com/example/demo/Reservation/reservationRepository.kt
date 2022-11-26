@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface reservationRepository: JpaRepository<reservation, reservation> {
-    @Query("select id,name, gym, times from reservation")
+    @Query("select id,name, gym, times,end_Times from reservation")
     fun findBy():List<reservation>
 }

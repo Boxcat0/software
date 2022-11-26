@@ -14,6 +14,7 @@
         <input type="hidden" name="name" value="name">
         <input type="hidden" name="id" value="target">
         <input type="hidden" name="times" value ="0000-00-00">
+        <input type="hidden" name="endTimes" value="0000-00-00">
         <input type="submit" value="삭제"/></br>
       </form>
     </tr>
@@ -23,6 +24,7 @@
       <input type="hidden" name="id" value="target">
       <input type="hidden" name="name" value="target">
       날짜 별 조회: <input type="date" name="times">
+      <input type="hidden" name="endTimes" value="0000-00-00">
       <input type="submit" value="검색"/>
     </form></br>
     <form method="post" action="/admin/Gym">
@@ -30,6 +32,7 @@
       <input type="hidden" name="id" value="target">
       <input type="hidden" name="name" value="target">
       <input type="hidden" name="times" value="0000-00-00">
+      <input type="hidden" name="endTimes" value="0000-00-00">
       <input type="submit" value="검색"/>
     </form></br>
     <form method="post" action="/admin/Name">
@@ -37,6 +40,7 @@
       <input type="hidden" name="id" value="target">
       예약자 이름 별 조회: <input type="text" name="name">
       <input type="hidden" name="times" value="0000-00-00">
+      <input type="hidden" name="endTimes" value="0000-00-00">
       <input type="submit" value="검색"/>
     </form></br>
     <table border="1">
@@ -64,6 +68,7 @@
   <input type="hidden" name="id" value="target">
   <input type="hidden" name="name" value="target">
   <input type="hidden" name="times" value="0000-00-00">
+  <input type="hidden" name="endTimes" value="0000-00-00">
   <input type="submit" value="초기화"/>
 </form></br>
 <a href="/">메인 페이지</a>

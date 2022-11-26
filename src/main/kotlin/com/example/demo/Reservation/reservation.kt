@@ -20,5 +20,7 @@ data class reservation(
     var name: String,
     var gym : String,
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    var times : String
+    var times : String,
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    var endTimes : String
 )

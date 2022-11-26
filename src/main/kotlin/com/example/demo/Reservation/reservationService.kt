@@ -27,7 +27,7 @@ class reservationService(@Autowired val repository: reservationRepository) {
                 return reservation[i]
             }
         }
-        return reservation(null,"null","null","null","0000-00-00")
+        return reservation(null,"null","null","null","0000-00-00","0000-00-00")
     }
 
     fun removeReservation(reservation: reservation)
@@ -117,7 +117,7 @@ class reservationService(@Autowired val repository: reservationRepository) {
         var reservationId :reservation
         if(reservation.size == 0)
         {
-            return reservation(null,"null","null","null","0000-00-00")
+            return reservation(null,"null","null","null","0000-00-00","0000-00-00")
         }
         else
         {
@@ -130,6 +130,6 @@ class reservationService(@Autowired val repository: reservationRepository) {
                 }
             }
         }
-        return reservation(null,"null","null","null","0000-00-00")
+        return reservation(null,"null","null","null","0000-00-00","0000-00-00")
     }
 }

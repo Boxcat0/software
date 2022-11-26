@@ -11,6 +11,7 @@
             예약자 이름:<input type="test" name="name">
             <input type="hidden" name="id" value="target">
             예약 날짜:<input type="date" name="times">
+            <input type="hidden" name="endTimes" value="0000-00-00">
             <input type="submit" value="삭제"/></br>
         </form>
         <form method="post" action="/search_reservation">
@@ -18,18 +19,21 @@
             <input type="hidden" name="id" th:value="target">
             <input type="hidden" name="name" value="target">
             날짜 별 조회: <input type="date" name="times">
+            <input type="hidden" name="endTimes" value="0000-00-00">
             <input type="submit" value="검색"/>
         </form>
         <table border="1">
             <tr>
                 <th>예약자 이름</th>
                 <th>예약자 시간</th>
+                <th>예약 유효 기간</th>
                 <th>ID</th>
             </tr>
             <tbody>
             <tr th:each = "re:${re}">
                 <td th:text ="${re.name}">
                 <td th:text ="${re.times}">
+                <td th:text ="${re.endTimes}">
                 <td th:text ="${re.id}">
             </tr>
             </tbody>
