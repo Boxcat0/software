@@ -38,7 +38,7 @@ class reservationController(@Autowired val service: reservationService,
         val now : LocalDate = LocalDate.now()
         val formatter : DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val todayDay : String = now.format(formatter)
-        println(reservation.endTimes)
+        val maxDay : String = now.format(formatter)
         if(reservation.times < todayDay)
         {
             model.addAttribute("today",todayDay)
@@ -53,9 +53,10 @@ class reservationController(@Autowired val service: reservationService,
             if(reservationId.id == "null" && reservation.times <= reservation.endTimes)
             {
                 service.makeReservation(reservation)
-                session.removeAttribute("GymId")
-                session.removeAttribute("GymPosition")
-                return "map_click"
+                model.addAttribute("userName",userDetails.username)
+                model.addAttribute("GymId",session.getAttribute("GymId"))
+                model.addAttribute("GymId",session.getAttribute("GymId"))
+                return "eventPage"
             }
             else{
                 model.addAttribute("today",todayDay)

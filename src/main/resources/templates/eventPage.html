@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map_click</title>
+    <link rel="stylesheet" href="/css/map_click.css"/>
+</head>
+<body>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adf74ad67e4999ffc26db73175bf8516&libraries=services"></script>
+    <script>
+        window.onload=function(){
+            //var userName=prompt("id 입력")
+            var Lat=localStorage.getItem('Lat')
+            var Lng=localStorage.getItem('Lng')
+            var names = localStorage.getItem('title')
+
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new kakao.maps.LatLng(37.527128, 127.000291), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };  
+        
+            // 지도를 생성합니다    
+            var map = new kakao.maps.Map(mapContainer, mapOption); 
+        
+            var coords = new kakao.maps.LatLng(Lat, Lng);
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+              map: map,
+              position: coords,
+              title: names
+            });
+            marker.setMap(map);
+
+            map.setCenter(coords)
+                
+            // 인포윈도우로 장소에 대한 설명을 표시합니다
+            var infowindow = new kakao.maps.InfoWindow({
+              content: '<div style="width:150px;text-align:center;padding:6px 0;">'+names+'</div>'
+            });
+            
+            infowindow.open(map, marker);
+        }
+        //집으로
+        function toHome(){
+            location.assign("/")
+        }
+        function toReview(){
+            location.assign("/board")
+        }
+        function toMap(){
+            location.assign("/remap")
+        }
+        function toDelete(){
+            location.assign("/review_delete")
+        }
+        function toSearch_Review(){
+            location.assign("/gym_review")
+        }
+        function toChange(){
+            location.assign("/change_review")
+        }
+        function toRev(){
+            location.assign("/reservation")
+        }
+    </script>
+    <div class="wrap">
+        <div style="width:100%;height:50px;">
+            <img id="image" src="/img/home.png" onclick="toHome()">
+            <input type="button" class="cmd" name="toMap" id="toMap" value="지도로 이동" onclick="toMap()">
+        </div>
+        <h3>현재 로그인된 사용자 : <td th:text ="${userName}"></h3>
+        <h3>헬스장 이름 : <td th:text ="${GymId}"></h3>
+        <h3>헬스장 위치 : <td th:text ="${GymPosition}"></h3>
+        <div id="map" style="width:100%;height:300px;"></div>
+        <br>
+        <div>
+            <input type="button" class="cmd2" name="writeReview" id="writeReview" value="리뷰 작성" onclick="toReview()"/><br><br>
+            <input type="button" class="cmd2" name="deleteReview" id="deleteReview" value="리뷰 삭제" onclick="toDelete()"/><br><br>
+            <input type="button" class="cmd2" name="gym_review" id="gym_review" value="리뷰 조회하기" onclick="toSearch_Review()"/><br><br>
+            <input type="button" class="cmd2" name="change_review" id="change_review" value="리뷰 변경" onclick="toChange()"/><br><br>
+            <input type="button" class="cmd2" name="reservation" id="reservation" value="예약 하기" onclick="toRev()"/><br><br>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,23 +1,16 @@
 package com.example.demo.Event
 
-import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoProperties.Storage
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpSession
 
 @Controller
 class EventController {
-    @GetMapping("/myPage")
-    fun myPage(@AuthenticationPrincipal userDetails: UserDetails,
-               model: Model):String{
-        model.addAttribute("userName",userDetails.username)
-        return "UserPage"
-    }
+
     @GetMapping("/Map2")
     fun openMap2():String{
         return "Map2"
@@ -61,6 +54,10 @@ class EventController {
                   model: Model,eventGym: eventGym,session: HttpSession
     ):String
     {
+        println(session)
+        println(userDetails.username)
+        println(eventGym.name)
+        println(eventGym.position)
         if(session.getAttribute("GymId") == null)
         {
             println(eventGym.name)

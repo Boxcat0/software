@@ -16,6 +16,9 @@
   function toHome(){
     location.assign("/")
   }
+  function toback(){
+    location.assign("/myPage")
+  }
   function toLogout(){
     location.assign("/logout")
   }
@@ -27,6 +30,7 @@
   }
 </script>
 <div class="home">
+  <img class="image" src="/img/back.png" onclick="toback()">
   <img class="image" src="/img/home.png" onclick="toHome()">
   <button id="logout" class="Logout" target="_self" onclick="toLogout()">Logout</button>
 </div>
@@ -71,7 +75,6 @@
   </table>
   <br>
   <button class="cmd" onclick="toMap()">헬스장 선택</button>
-  <button class="cmd" onclick="toMyPage()">마이 페이지</button>
 </div>
 </body>
 </html>

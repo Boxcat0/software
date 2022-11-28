@@ -14,7 +14,7 @@ app.get('/map', (request, response)=>{
 })
 
 app.get('/map_click',(request, response)=>{
-    response.sendFile("C:/Users/vv545/IdeaProjects/demo/src/main/resources/templates/map_click.html")
+    response.sendFile("C:/Users/vv545/IdeaProjects/demo/src/main/resources/templates/eventPage.html")
 })
 
 app.get('/gym_data',(request,response)=>{

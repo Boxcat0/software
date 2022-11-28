@@ -1,21 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <th><h1>예약 하기</h1></th>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>예약 하기</title>
+  <link rel="stylesheet" href="/css/home.css"/>
 </head>
 <body>
-<h3>현재 로그인된 사용자 : <td th:text ="${userName}"></h3>
-<h4>해당 날짜 이전의 예약은 불가능 합니다.:<td th:text="${today}"></h4>
-<form method="post" action="/reservation">
-  <input type="hidden" name="id" th:value="${userName}">
-  <input type="hidden" name="gym" th:value="${GymId}">
-  예약자 성함:<input type="text" name="name"/></br>
-  예약 시간: <input type="Date"  name="times">
-  예약 유효기간: <input type="Date"  name="endTimes">
-  <input type="submit" value="Register"/>
-</form>
-<a href="/map_click">Back</a>
-</body>
+<script>
+  window.onload=function(){
+    var userName=localStorage.getItem('ID')
+  }
+  function toHome(){
+    location.assign("/")
+  }
+  function toBack(){
+    location.assign("/map_click")
+  }
+  function toLogout(){
+    location.assign("/logout")
+  }
 </script>
+<div class="home">
+  <img class="image" src="/img/home.png" onclick="toHome()">
+  <button id="logout" class="cmd" target="_self" onclick="toLogout()">Logout</button>
+  <button id="back" class="cmd" onclick="toBack()">뒤로가기</button>
+</div>
+<div class = "wrap">
+  <h1>예약 하기</h1>
+  <h3>현재 로그인된 사용자 : <td th:text ="${userName}"></h3>
+  <h4>해당 날짜 이전의 예약은 불가능 합니다.:<td th:text="${today}"></h4>
+  <form method="post" action="/reservation">
+    <input type="hidden" name="id" th:value="${userName}">
+    <input type="hidden" name="gym" th:value="${GymId}">
+    <label>예약자 성함 </label><input type="text" name="name"/></br>
+    <label>예약 시간 </label><input type="Date"  name="times" th:min="${today}">
+    <label>예약 유효기간 </label><input type="Date"  name="endTimes">
+    <input type="submit" class="cmd" value="Register"/>
+  </form>
+</div>
+</body>
 </html>

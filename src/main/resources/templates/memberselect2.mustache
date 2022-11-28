@@ -1,25 +1,46 @@
 <!DOCTYPE html>
-<html lang = "kr" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOW MEMBER</title>
+    <link rel="stylesheet" href="/home_css"/>
+</head>
 <body>
-<div class = "content">
-    <div>
-        <th><h1>SHOW MEMBER</h1></th>
-        <h3>NOW USER : {{userName}}</h3>
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>ROLES</th>
-            </tr>
-            {{#re}}
+<script>
+    window.onload=function(){
+        var userName=localStorage.getItem('ID')
+    }
+    function toHome(){
+        location.assign("/")
+    }
+    function toBack(){
+        location.assign("/myPage")
+    }
+    function toLogout(){
+        location.assign("/logout")
+    }
+</script>
+<div class="home">
+    <img class="image" src="/img/back.png" onclick="toBack()">
+    <img class="image" src="/img/home.png" onclick="toHome()">
+    <button id="logout" class="cmd" target="_self" onclick="toLogout()">Logout</button>
+</div>
+<div class = "wrap">
+    <h1>SHOW MEMBER</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>ROLES</th>
+        </tr>
+         {{#re}}
                 <tbody>
             <th>{{id}}</th>
             <th>{{roles}}</th>
                 </tbody>
             {{/re}}
-        </table>
-        <a href="/adminPage">BACK</a>
-    </div>
+    </table>
 </div>
 </body>
 </html>

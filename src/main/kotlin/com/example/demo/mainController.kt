@@ -25,6 +25,12 @@ class mainController(@Autowired val gymAccountService: gymAccountService) {
         session.removeAttribute("GymPosition")
         return "home"
     }
+    @GetMapping("/myPage")
+    fun myPage(@AuthenticationPrincipal userDetails: UserDetails,
+               model: Model):String{
+        model.addAttribute("userName",userDetails.username)
+        return "UserPage"
+    }
     @GetMapping("/adminPage")
     fun adminPage(@AuthenticationPrincipal userDetails: UserDetails,model: Model):String{
         model.addAttribute("userName", userDetails.username)

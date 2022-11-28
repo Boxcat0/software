@@ -6,16 +6,6 @@ document.addEventListener('DOMContentLoaded', function(){
             rating.setRate(parseInt(elem.value));
         }
     })
-    //제목 글자수 초과 체크
-    document.querySelector('.review_t_textarea').addEventListener('keydown',function(){
-        //리뷰 40자 초과 안되게 자동 자름
-        let review_t = document.querySelector('.review_t_textarea');
-        let lengthCheckEx = /^.{40,}$/;
-        if(lengthCheckEx.test(review_t.value)){
-            //40자 초과 컷
-            review_t.value = review_t.value.substr(0,40);
-        }
-    });
     //리뷰 글자수 초과 체크
     document.querySelector('.review_textarea').addEventListener('keydown',function(){
         //리뷰 400자 초과 안되게 자동 자름
@@ -34,18 +24,13 @@ document.addEventListener('DOMContentLoaded', function(){
             rating.showMessage('rate');
             return false;
         }
-        //제목 1글자 미만이면 메시지 표시
-        if(document.querySelector('.review_t_textarea').value.length < 1){
-            rating.showMessage('review_t');
-            return false;
-        }
         //리뷰 1글자 미만이면 메시지 표시
         if(document.querySelector('.review_textarea').value.length < 1){
             rating.showMessage('review');
             return false;
         }
         //폼 초기화
-        alert(`별점: ${rating.rate}\n제목: ${document.querySelector('.review_t_textarea').value}\n내용: ${document.querySelector('.review_textarea').value}`);
+        alert(`별점: ${rating.rate}\n내용: ${document.querySelector('.review_textarea').value}`);
         var gymId = localStorage.getItem('gym');
         var userId = localStorage.getItem('userName');
         var form = document.createElement('form');
@@ -104,14 +89,6 @@ Rating.prototype.showMessage = function(type){//경고메시지 표시
             //지정된 시간 후 안내 메시지 감춤
             setTimeout(function(){
                 document.querySelector('.review_rating .warning_msg').style.display = 'none';
-            },1000);
-            break;
-        case 'review_t':
-            //안내메시지 표시
-            document.querySelector('.review_t .warning_msg').style.display = 'block';
-            //지정된 시간 후 안내 메시지 감춤
-            setTimeout(function(){
-                document.querySelector('.review_t .warning_msg').style.display = 'none';
             },1000);
             break;
         case 'review':

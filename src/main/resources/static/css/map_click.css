@@ -12,14 +12,24 @@ html, body{
 
 }
 .cmd{
-    margin-top: 20px;
-    /* text-align: right; */
-}
-.cmd input[type="button"]{
     padding: 10px 20px;
     border: 1px solid #e8e8e8;
-    background-color: #fff;
-    background-color:#000;
+    background-color: #ffffff;
+    background-color:#000000;
     color: #fff;
     float: right;
+}
+.cmd2{
+    padding: 10px 20px;
+    border: 1px solid #e8e8e8;
+    background-color: #ffffff;
+    background-color:#000000;
+    color: #fff;
+    float: left;
+}
+.cmd2:hover{
+    background: #3300ff;
+}
+.cmd:hover{
+    background: #3300ff;
 }

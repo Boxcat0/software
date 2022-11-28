@@ -54,7 +54,7 @@ class masterReservationController(@Autowired val service: reservationService,
         else
         {
             model.addAttribute("userName",userDetails.username)
-            return "map_click"
+            return "eventPage"
         }
     }
     @PostMapping("/delete_reservation")

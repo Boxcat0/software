@@ -11,11 +11,21 @@
     var GymName = "[[${gym}]]";
     localStorage.setItem('gym', GymName);
     localStorage.setItem('userName',userName);
+    function toHome(){
+      location.assign("/")
+    }
+    function toback(){
+      location.assign("/map_click")
+    }
   </script>
   <script type="text/javascript" src="/js/star.js"></script>
 </head>
 <body>
 <div class="wrap">
+  <div class="home" style="width:480px;height:50px;">
+    <img class="image" src="/img/back.png" onclick="toback()">
+    <img id="image" src="/img/home.png" onclick="toHome()">
+  </div>
   <h1>리뷰</h1>
   <h3>현재 로그인된 사용자 : <td th:text ="${id}"></h3>
   <h2><td th:text = "${gym}"></h2>
@@ -40,10 +50,6 @@
         <input type="checkbox" name="star" id="rating5" value="5" class="rate_radio" title="5점">
         <label for="rating5"></label>
       </div>
-    </div>
-    <div class="review_t">
-      <div class="warning_msg">1자 이상 40자 이하로 작성해 주세요.</div>
-      <textarea rows="1" class="review_t_textarea"></textarea>
     </div>
     <div class="review_contents">
       <div class="warning_msg">1자 이상 400자 이하로 작성해 주세요.</div>
