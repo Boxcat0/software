@@ -32,7 +32,6 @@ class ReviewController(val service: ReviewService,
     ):String
     {
         val target3 : List<Review> = service.findGymByStar(review.star)
-        println(session.getAttribute("Switch"))
         if(session.getAttribute("Switch") == "Gym")
         {
             println("this is Gym")
@@ -57,11 +56,9 @@ class ReviewController(val service: ReviewService,
         val targetword : String = review.reviews
         val allReview:List<Review> = service.findReviews()
         val targetGym = review.gym.toString()
-        println(targetGym)
         if(targetGym != "null")
         {
             val allReviewById : List<Review> = service.findReviewStarByGym(allReview,targetGym)
-            println(allReviewById)
             model.addAttribute("re",service.findReviewByWord(allReviewById,targetword))
             model.addAttribute("name",userDetails.username)
             model.addAttribute("GymId",targetGym)
@@ -70,7 +67,6 @@ class ReviewController(val service: ReviewService,
         else
         {
             val allReviewById : List<Review> = service.findReviewStarById(allReview, userDetails.username)
-            println(userDetails)
             model.addAttribute("re",service.findReviewByWord(allReviewById,targetword))
             model.addAttribute("name",userDetails.username)
             model.addAttribute("GymId",targetGym)

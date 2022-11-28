@@ -39,11 +39,13 @@ class masterReservationController(@Autowired val service: reservationService,
         val allAccount : List<Account> = accountService.findAccount()
         val adminAccount : Account = accountService.searchAccount(userDetails.username,allAccount)
         val targetGymAccount : gymAccount = gymService.searchAccountById(targetId,gymAccountAll)
-        if(targetGymAccount.gym == session.getAttribute("GymId")||adminAccount.roles.contains(AccountRole.ADMIN))
+        println(targetGymAccount.roles)
+        if(targetGymAccount.roles.contains(AccountRole.GYM)||adminAccount.roles.contains(AccountRole.ADMIN))
         {
             model.addAttribute("userName",userDetails.username)
-            model.addAttribute("GymId",session.getAttribute("GymId"))
-            val gym : String = session.getAttribute("GymId").toString()
+            model.addAttribute("GymId",targetGymAccount.gym)
+            session.setAttribute("GymId",targetGymAccount.gym)
+            val gym : String = targetGymAccount.gym
             val reservationAll : List<reservation> = service.findReservationBy()
             val reservationAllByGym : List<reservation> = service.findEveryReservationByGym(reservationAll,gym)
             model.addAttribute("re",reservationAllByGym)

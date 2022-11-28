@@ -9,7 +9,7 @@
     <tr>
       <form method="post" action="/admin/delete_reservation2">
         <h5>예약 삭제</h5>
-        삭제 번호:<input type="text" name="number"/>
+        삭제 번호:<input type="text" name="number_reservation"/>
         <input type="hidden" name="gym" value="gym">
         <input type="hidden" name="name" value="name">
         <input type="hidden" name="id" value="target">
@@ -48,16 +48,20 @@
         <th>번호</th>
         <th>ID</th>
         <th>예약자 이름</th>
-        <th>예약자 시간</th>
         <th>예약 헬스장</th>
+        <th>예약자 시간</th>
+        <th>유효 날짜</th>
+
       </tr>
       <tbody>
       <tr th:each = "re:${re}">
-        <td th:text ="${re.number}">
+        <td th:text ="${re.number_reservation}">
         <td th:text ="${re.id}">
         <td th:text ="${re.name}">
-        <td th:text ="${re.times}">
         <td th:text ="${re.gym}">
+        <td th:text ="${re.times}">
+        <td th:text ="${re.endTimes}">
+
       </tr>
       </tbody>
     </table>

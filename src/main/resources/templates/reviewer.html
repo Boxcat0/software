@@ -1,51 +1,77 @@
-<!DOCTYPE html>
-<html lang = "kr" xmlns:th="http://www.thymeleaf.org">
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리뷰 조회</title>
+  <link rel="stylesheet" href="/css/home.css"/>
+</head>
 <body>
-<div class = "content">
-  <div>
-    <th><h1>리뷰 조회</h1></th>
-    <h3>현재 로그인된 사용자 : <td th:text ="${name}"></h3>
-    <form method="post" action="/find_review">
-      별점 조회:<input type="number" name="star">
-      <input type="hidden" name="gym" th:value="${GymId}">
-      <input type="hidden" name="id" th:value="${name}">
-      <input type="hidden" name="reviews" value="target">
-      <input type="submit" value="검색"/>
-    </form>
-    <form method="post" action="/find_word_review">
-      <input type="hidden" name="star" value ="1">
-      <input type="hidden" name="gym" th:value="${GymId}">
-      <input type="hidden" name="id" th:value="${name}">
-      키워드 별 조회 : <input type="text" name="reviews" list="depList">
-      <datalist id="depList">
-        <option value="헬스장"></option>
-        <option value="GX"></option>
-        <option value="크기"></option>
-        <option value="시설"></option>
-      </datalist>
-      <input type="submit" value="검색"/>
-    </form></br>
-    <table border="1">
-      <tr>
-        <th>Review</th>
-        <th>별점</th>
-        <th>ID</th>
-        <th>헬스장 이름</th>
-      </tr>
-      <tbody>
-      <tr th:each = "re:${re}">
+<script>
+  window.onload=function(){
+    var userName=localStorage.getItem('ID')
+  }
+  function toHome(){
+    location.assign("/")
+  }
+  function toLogout(){
+    location.assign("/logout")
+  }
+  function toMap(){
+    location.assign("/Map")
+  }
+  function toMyPage(){
+    location.assign("/myPage")
+  }
+</script>
+<div class="home">
+  <img class="image" src="/img/home.png" onclick="toHome()">
+  <button id="logout" class="Logout" target="_self" onclick="toLogout()">Logout</button>
+</div>
+<div class = "wrap">
+  <th><h1>리뷰 조회</h1></th>
+  <h3>현재 로그인된 사용자 : <td th:text ="${name}"></h3>
+  <form method="post" action="/find_review">
+    <label>별점 조회 </label><input type="number" class="inp" name="star">
+    <input type="hidden" name="gym" th:value="${GymId}">
+    <input type="hidden" name="id" th:value="${name}">
+    <input type="hidden" name="reviews" value="target">
+    <input type="submit" class="cmd" value="검색"/>
+  </form>
+  <form method="post" action="/find_word_review">
+    <input type="hidden" name="star" value ="1">
+    <input type="hidden" name="gym" th:value="${GymId}">
+    <input type="hidden" name="id" th:value="${name}">
+    <label>키워드 별 조회 </label><input type="text"  class="inp"name="reviews" list="depList">
+    <datalist id="depList">
+      <option value="헬스장"></option>
+      <option value="GX"></option>
+      <option value="크기"></option>
+      <option value="시설"></option>
+    </datalist>
+    <input type="submit" class="cmd" value="검색"/>
+  </form></br>
+  <table>
+    <tr>
+      <th>Review</th>
+      <th>별점</th>
+      <th>ID</th>
+      <th>헬스장 이름</th>
+    </tr>
+    <tbody>
+    <tr th:each = "re:${re}">
         <td th:text ="${re.reviews}">
         <td th:text ="${re.star}">
         <td th:text ="${re.id}">
         <td th:text ="${re.gym}">
-      </tr>
-      </tbody>
-    </table>
-    <a href="/">메인 페이지</a>
-    <a href="/Map">헬스장 선택</a>
-    <a href="/myPage">마이 페이지</a>
-  </div>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+  <button class="cmd" onclick="toMap()">헬스장 선택</button>
+  <button class="cmd" onclick="toMyPage()">마이 페이지</button>
 </div>
 </body>
 </html>

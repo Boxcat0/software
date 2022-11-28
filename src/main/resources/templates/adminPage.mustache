@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="kr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" href="/static/css/home.css"/>
+</head>
 <body>
-<div class = "content">
-    <div>
+<div class = "home">
+    <div class="wrap">
         <h1>어디가GYM?-관리자 페이지</h1>
         {{#userName}}
             <h3>USER : {{userName}}</h3>

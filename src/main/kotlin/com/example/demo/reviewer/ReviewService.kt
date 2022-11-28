@@ -64,7 +64,7 @@ class ReviewService(@Autowired private val db: ReviewRepository){
     }
     fun findGymByid(reviews : List<Review>,gym:String?):Review//gym을 기반으로 헬스장 탐색
     {
-        for(i in 0..reviews.size)
+        for(i in 0..reviews.size-1)
         {
             if(reviews[i].gym == gym)
             {

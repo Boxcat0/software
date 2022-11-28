@@ -1,0 +1,42 @@
+.wrap{
+    margin: 0 auto; /* 화면 가운데로 */
+    text-align: center;
+    /* vertical-align: middle; */
+}
+.wrap table{
+    margin: 0 auto;
+    border: 1px solid #444444;
+    border-collapse: collapse;
+}
+.wrap th, td{
+    border: 1px solid #444444;
+    padding: 5px;
+}
+.wrap th{
+    background-color: #e8e8e8;
+}
+.cmd{
+    text-align: center;
+    padding: 10px 20px;
+    border: 1px solid #e8e8e8;
+    background-color: #fff;
+    background-color:#000;  
+    color: #fff;
+    cursor:pointer;
+    /* float: right; */
+}
+.cmd:hover{
+    background: #3300ff;
+}
+.Logout{
+    text-align: left;
+    padding: 10px 20px;
+    border: 1px solid #e8e8e8;
+    background-color: #fff;
+    background-color:#000;  
+    color: #fff;
+}
+.inp{   
+    /* border: none; */
+    /* color: #aaa; */
+}

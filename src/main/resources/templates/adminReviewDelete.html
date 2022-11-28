@@ -7,7 +7,7 @@
 </head>
 <body>
 <form method="post" action="/adminReviewDelete">
-  번호:<input type="text" name="number">
+  번호:<input type="text" name="number_review">
   <input type="hidden" name="id" value="target">
   <input type="hidden" name="gym" value="target">
   <input type="hidden" name="star" value="1">
@@ -24,7 +24,7 @@
   </tr>
   <tbody>
   <tr th:each = "re:${re}">
-    <td th:text ="${re.number}">
+    <td th:text ="${re.number_review}">
     <td th:text ="${re.reviews}">
     <td th:text ="${re.star}">
     <td th:text ="${re.id}">

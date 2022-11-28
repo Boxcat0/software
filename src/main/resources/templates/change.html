@@ -1,20 +1,40 @@
-<!--signup.html-->
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <h1>리뷰 변경 PAGE</h1>
-  <h3>헬스장 : <td th:text = "${GymId}"></h3>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리뷰 변경 PAGE</title>
+  <link rel="stylesheet" href="/css/home.css"/>
 </head>
 <body>
-<form method="post" action="/change_review">
-  <input type="hidden" name="id" th:value="${id}">
-  password : <input type="text" name="password"><br/>
-  <input type="hidden" name="roles" value="USER"/>
-  <input type = "hidden" name = "gym" th:value ="${GymId}"/>
-  변경할 리뷰 : <input type="text" name="reviews"/><br/>
-  <input type="submit" value="Register"/>
-</form>
-<a href="/map_click">뒤로가기</a>
+<script>
+  window.onload=function(){
+    var userName=localStorage.getItem('ID')
+  }
+  function toHome(){
+    location.assign("/")
+  }
+  function toLogout(){
+    location.assign("/logout")
+  }
+</script>
+<div class="home">
+  <img class="image" src="/img/home.png" onclick="toHome()">
+  <button id="logout" class="cmd" target="_self" onclick="toLogout()">Logout</button>
+</div>
+<div class = "wrap">
+  <h1>리뷰 변경 PAGE</h1>
+  <h3>헬스장 : <td th:text = "${GymId}"></h3>
+  <form method="post" action="/change_review">
+    <input type="hidden" name="id" th:value="${id}">
+    <label>password </label><input type="text" name="password"><br/>
+    <input type="hidden" name="roles" value="USER"/>
+    <input type = "hidden" name = "gym" th:value ="${GymId}"/>
+    <label>변경할 리뷰 </label><input type="text" name="reviews"/><br/><br>
+    <input type="submit" class="cmd" value="Register"/>
+  </form>
+</div>
 </body>
 </html>

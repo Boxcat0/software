@@ -50,7 +50,7 @@ class reservationController(@Autowired val service: reservationService,
         {
             val reservationAll : List<reservation> = repository.findBy()
             val reservationId : reservation = service.findEveryReservationByNameTime(reservationAll,reservation.name,reservation.times)
-            if(reservationId.id == "null" && reservation.times < reservation.endTimes)
+            if(reservationId.id == "null" && reservation.times <= reservation.endTimes)
             {
                 service.makeReservation(reservation)
                 session.removeAttribute("GymId")
