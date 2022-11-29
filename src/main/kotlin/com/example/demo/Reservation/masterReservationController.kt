@@ -66,7 +66,7 @@ class masterReservationController(@Autowired val service: reservationService,
     {
 
         val reservationAll : List<reservation> = repository.findBy()
-        val reservationAllByName : reservation = service. findEveryReservationByNameTime(reservationAll,reservation.name,reservation.times)
+        val reservationAllByName : reservation = service. findEveryReservationByNameTime(reservationAll,reservation.name,reservation.times,reservation.gym)
         if(reservationAllByName.id =="null")
         {
             model.addAttribute("userName",userDetails.username)

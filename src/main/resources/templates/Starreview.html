@@ -15,7 +15,7 @@
       location.assign("/")
     }
     function toback(){
-      location.assign("/map_click")
+      history.back()
     }
   </script>
   <script type="text/javascript" src="/js/star.js"></script>
@@ -55,7 +55,7 @@
       <div class="warning_msg">1자 이상 400자 이하로 작성해 주세요.</div>
       <textarea rows="10" name ="reviews" class="review_textarea"></textarea>
     </div>
-    <input type="button" name="save" id="save" value="Register"/>
+    <input type="button" class="cmd" name="save"id="save" value="Register"/>
   </form>
   <a href="/map_click">뒤로가기</a>
 </div>

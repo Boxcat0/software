@@ -21,7 +21,9 @@ class ReviewChange(@Autowired private val pass: PasswordEncoder,
     fun intochange(@AuthenticationPrincipal user: UserDetails,model : Model, session: HttpSession
                    ): String{
         model.addAttribute("id", user.username)
+        val deleteTargetid : List<Review> = reviewRepository.findReviewById(user.username)
         model.addAttribute("GymId",session.getAttribute("GymId"))
+        model.addAttribute("re",deleteTargetid)
         return "change"
     }
 
@@ -32,24 +34,30 @@ class ReviewChange(@Autowired private val pass: PasswordEncoder,
                      review: Review,model : Model
     ): String{
         val dbPassword : String = user.password
-        println(dbPassword)
         val targetId : String = account.id
-        println(targetId)
-        val targetGym : String? = review.gym
+        val targetNumber :Long? = review.number_review
         val changereviews : String = review.reviews
         val targetPassword : String = account.password
-        println(targetPassword)
+        val deleteTargetid : List<Review> = reviewRepository.findReviewById(user.username)
         if(pass.matches(targetPassword, dbPassword))//확인하고 싶은 비밀번호, 확인 타겟 위치 기억할것
         {
             val deleteTargetid : List<Review> = reviewRepository.findReviewById(targetId)//아이디 기준으로 리뷰 조회
-            println(deleteTargetid)
-            val finaltarget : Review = reviewService.findGymByid(deleteTargetid,targetGym)//아이디랑 헬스장 번호로 조회
-            finaltarget.reviews = changereviews//타겟된 리뷰를 change로 변경
-            reviewService.SaveReview(finaltarget)
-            return "redirect:/"
+            val finaltarget : Review = reviewService.findReviewByNumber(deleteTargetid,targetNumber)//아이디랑 헬스장 번호로 조회
+            if(finaltarget.id =="null")
+            {
+                model.addAttribute("id", user.username)
+                model.addAttribute("GymId",session.getAttribute("GymId"))
+                return "change"
+            }
+            else{
+                finaltarget.reviews = changereviews//타겟된 리뷰를 change로 변경
+                reviewService.SaveReview(finaltarget)
+                return "redirect:/"
+            }
         }
         model.addAttribute("id", user.username)
         model.addAttribute("GymId",session.getAttribute("GymId"))
+        model.addAttribute("re",deleteTargetid)
         return "change"
     }
 }

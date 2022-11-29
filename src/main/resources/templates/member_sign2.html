@@ -1,9 +1,9 @@
+<!--회원가입 페이지-->
 <!--signup.html-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <th><h1>Delete Review PAGE</h1></th>
   <link rel="stylesheet" href="/css/home.css"/>
 </head>
 <script>
@@ -27,12 +27,11 @@
 </div>
 <body>
 <div class="wrap">
-  <form method="post" action="/review_delete">
+  <th><h1>회원 가입</h1></th>
+  <form method="post" action="/member_sign2">
     Id : <input type="text" name="id"><br/>
     password : <input type="text" name="password"><br/>
-    <input type="hidden" name="gym" th:value="${GymId}"><br/>
     <input type="hidden" name="roles" value="USER"/>
-    <input type="hidden" name="reviews" value="target"/>
     <input type="submit" class="cmd" value="Register"/>
   </form>
 </div>

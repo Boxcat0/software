@@ -1,46 +1,64 @@
 <!DOCTYPE html>
-<html lang = "kr" xmlns:th="http://www.thymeleaf.org">
-
-<body>
-<div class = "content">
-    <div>
-        <th><h1>예약 조회</h1></th>
-        <h3>현재 로그인된 사용자 : <td th:text ="${userName}"></h3>
-        <form method="post" action="/delete_reservation">
-            <input type="hidden" name="gym" th:value="${GymId}">
-            예약자 이름:<input type="test" name="name">
-            <input type="hidden" name="id" value="target">
-            예약 날짜:<input type="date" name="times">
-            <input type="hidden" name="endTimes" value="0000-00-00">
-            <input type="submit" value="삭제"/></br>
-        </form>
-        <form method="post" action="/search_reservation">
-            <input type="hidden" name="gym" th:value="${GymId}">
-            <input type="hidden" name="id" th:value="target">
-            <input type="hidden" name="name" value="target">
-            날짜 별 조회: <input type="date" name="times">
-            <input type="hidden" name="endTimes" value="0000-00-00">
-            <input type="submit" value="검색"/>
-        </form>
-        <table border="1">
-            <tr>
-                <th>예약자 이름</th>
-                <th>예약자 시간</th>
-                <th>예약 유효 기간</th>
-                <th>ID</th>
-            </tr>
-            <tbody>
-            <tr th:each = "re:${re}">
-                <td th:text ="${re.name}">
-                <td th:text ="${re.times}">
-                <td th:text ="${re.endTimes}">
-                <td th:text ="${re.id}">
-            </tr>
-            </tbody>
-        </table>
-        <a href="/">메인 페이지</a>
-        <a href="/gymMasterPage">페이지로 돌아가기</a>
-    </div>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/home.css"/>
+</head>
+<script>
+    window.onload=function(){
+        var userName=localStorage.getItem('ID')
+    }
+    function toHome(){
+        location.assign("/")
+    }
+    function toLogout(){
+        location.assign("/logout")
+    }
+    function toBack(){
+        history.back()
+    }
+</script>
+<div class="home">
+    <img id="back" src="/img/back.png" onclick="toBack()">
+    <img class="image" src="/img/home.png" onclick="toHome()">
+    <button id="logout" class="cmd" target="_self" onclick="toLogout()">Logout</button>
 </div>
-</body>
+<div class="wrap">
+    <body>
+    <th><h1>예약 조회</h1></th>
+    <h3>현재 로그인된 사용자 : <td th:text ="${userName}"></h3>
+    <form method="post" action="/delete_reservation">
+        <input type="hidden" name="gym" th:value="${GymId}">
+        예약자 이름:<input type="test" name="name">
+        <input type="hidden" name="id" value="target">
+        예약 날짜:<input type="date" name="times">
+        <input type="hidden" name="endTimes" value="0000-00-00">
+        <input type="submit" class="cmd" value="삭제"/></br>
+    </form>
+    <form method="post" action="/search_reservation">
+        <input type="hidden" name="gym" th:value="${GymId}">
+        <input type="hidden" name="id" th:value="target">
+        <input type="hidden" name="name" value="target">
+        날짜 별 조회: <input type="date" name="times">
+        <input type="hidden" name="endTimes" value="0000-00-00">
+        <input type="submit" class="cmd" value="검색"/>
+    </form>
+    <table border="1">
+        <tr>
+            <th>예약자 이름</th>
+            <th>예약자 시간</th>
+            <th>예약 유효 기간</th>
+            <th>ID</th>
+        </tr>
+        <tbody>
+        <tr th:each = "re:${re}">
+            <td th:text ="${re.name}">
+            <td th:text ="${re.times}">
+            <td th:text ="${re.endTimes}">
+            <td th:text ="${re.id}">
+        </tr>
+        </tbody>
+    </table>
+    </body>
+</div>
 </html>

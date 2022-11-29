@@ -112,7 +112,7 @@ class reservationService(@Autowired val repository: reservationRepository) {
             return reservationId
         }
     }
-    fun findEveryReservationByNameTime(reservation : List<reservation>,name:String,times: String):reservation
+    fun findEveryReservationByNameTime(reservation : List<reservation>,name:String,times: String,gym:String):reservation
     {
         var reservationId :reservation
         if(reservation.size == 0)
@@ -123,7 +123,7 @@ class reservationService(@Autowired val repository: reservationRepository) {
         {
             for(i in 0..reservation.size-1)
             {
-                if(reservation[i].name == name && reservation[i].times == times)
+                if(reservation[i].name == name && reservation[i].times == times && reservation[i].gym == gym)
                 {
                     reservationId = reservation[i]
                     return reservationId

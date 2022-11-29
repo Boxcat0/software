@@ -3,16 +3,32 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <th><h1>헬스장 리뷰 조회</h1></th>
-  <h2>Do you Check Review?</h2>
+  <link rel="stylesheet" href="/css/home.css"/>
 </head>
+<script>
+  window.onload=function(){
+    var userName=localStorage.getItem('ID')
+  }
+  function toHome(){
+    location.assign("/")
+  }
+  function toLogout(){
+    location.assign("/logout")
+  }
+</script>
+<div class="home">
+  <img class="image" src="/img/home.png" onclick="toHome()">
+  <button id="logout" class="cmd" target="_self" onclick="toLogout()">Logout</button>
+  <h2>리뷰를 확인하겠습니까?</h2>
+</div>
 <body>
+<div class = "wrap">
 <form method="post" action="/gym_review">
   <input type="hidden" name="gym" th:value ="${GymId}"><br/>
   <input type="hidden" name="id" value="target"/>
   <input type="hidden" name="reviews" value="target"/>
-  <input type="submit" value="Yes"/>
+  <input type="submit" class="cmd" value="리뷰 확인하기"/>
 </form>
-<a href="/map_click">뒤로가기</a>
+</div>
 </body>
 </html>

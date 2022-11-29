@@ -3,35 +3,56 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <th><h1>Delete Review PAGE</h1></th>
+  <link rel="stylesheet" href="/css/home.css"/>
 </head>
 <body>
-<form method="post" action="/adminReviewDelete">
-  번호:<input type="text" name="number_review">
-  <input type="hidden" name="id" value="target">
-  <input type="hidden" name="gym" value="target">
-  <input type="hidden" name="star" value="1">
-  <input type="hidden" name="reviews" value="target">
-  <input type="submit" value="삭제"/>
-</form>
-<table border="1">
-  <tr>
-    <th>number</th>
-    <th>리뷰 내용</th>
-    <th>별점</th>
-    <th>ID</th>
-    <th>헬스장 이름</th>
-  </tr>
-  <tbody>
-  <tr th:each = "re:${re}">
-    <td th:text ="${re.number_review}">
-    <td th:text ="${re.reviews}">
-    <td th:text ="${re.star}">
-    <td th:text ="${re.id}">
-    <td th:text ="${re.gym}">
-  </tr>
-  </tbody>
-</table>
-<a href="/adminPage">뒤로가기</a>
+<script>
+  window.onload=function(){
+    var userName=localStorage.getItem('ID')
+  }
+  function toHome(){
+    location.assign("/")
+  }
+  function toLogout(){
+    location.assign("/logout")
+  }
+  function toBack(){
+    history.back()
+  }
+</script>
+<div class="home">
+  <img id="back" src="/img/back.png" onclick="toBack()">
+  <img class="image" src="/img/home.png" onclick="toHome()">
+  <button id="logout" class="cmd" target="_self" onclick="toLogout()">Logout</button>
+</div>
+<div class ="wrap">
+  <th><h1>Delete Review PAGE</h1></th>
+  <form method="post" action="/adminReviewDelete">
+    삭세할 번호:<input type="text" name="number_review">
+    <input type="hidden" name="id" value="target">
+    <input type="hidden" name="gym" value="target">
+    <input type="hidden" name="star" value="1">
+    <input type="hidden" name="reviews" value="target">
+    <input type="submit" class="cmd" value="삭제"/>
+  </form>
+  <table border="1">
+    <tr>
+      <th>number</th>
+      <th>리뷰 내용</th>
+      <th>별점</th>
+      <th>ID</th>
+      <th>헬스장 이름</th>
+    </tr>
+    <tbody>
+    <tr th:each = "re:${re}">
+      <td th:text ="${re.number_review}">
+      <td th:text ="${re.reviews}">
+      <td th:text ="${re.star}">
+      <td th:text ="${re.id}">
+      <td th:text ="${re.gym}">
+    </tr>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>

@@ -38,7 +38,6 @@ class reservationController(@Autowired val service: reservationService,
         val now : LocalDate = LocalDate.now()
         val formatter : DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val todayDay : String = now.format(formatter)
-        val maxDay : String = now.format(formatter)
         if(reservation.times < todayDay)
         {
             model.addAttribute("today",todayDay)
@@ -49,7 +48,7 @@ class reservationController(@Autowired val service: reservationService,
         else
         {
             val reservationAll : List<reservation> = repository.findBy()
-            val reservationId : reservation = service.findEveryReservationByNameTime(reservationAll,reservation.name,reservation.times)
+            val reservationId : reservation = service.findEveryReservationByNameTime(reservationAll,reservation.name,reservation.times,reservation.gym)
             if(reservationId.id == "null" && reservation.times <= reservation.endTimes)
             {
                 service.makeReservation(reservation)

@@ -3,15 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <th><h1>REGIST PAGE</h1></th>
+  <link rel="stylesheet" href="/css/home.css"/>
 </head>
+<script>
+  window.onload=function(){
+    var userName=localStorage.getItem('ID')
+  }
+  function toHome(){
+    location.assign("/")
+  }
+  function toLogout(){
+    location.assign("/logout")
+  }
+  function toBack(){
+    history.back()
+  }
+</script>
+<div class ="home">
+  <img id="back" src="/img/back.png" onclick="toBack()">
+  <img class="image" src="/img/home.png" onclick="toHome()">
+  <button id="logout" class="cmd" target="_self" onclick="toLogout()">Logout</button>
+</div>
 <body>
-<form method="post" action="/gymMaster">
-  Id : <input type="text" name="id"><br/>
-  password : <input type="text" name="pw"><br/>
-  <input type="hidden" name="gym" th:value="${GymId}"/>
-  <input type="hidden" name="roles" value="GYM"/>
-  <input type="submit" value="Register"/>
-</form>
-<a href="/">Back</a>
+<div class="wrap">
+  <form method="post" action="/gymMaster">
+    Id : <input type="text" name="id"><br/>
+    password : <input type="text" name="pw"><br/>
+    <input type="hidden" name="gym" th:value="${GymId}"/>
+    <input type="hidden" name="roles" value="GYM"/>
+    <input type="submit" class="cmd" value="Register"/>
+  </form>
+</div>
 </body>
 </html>

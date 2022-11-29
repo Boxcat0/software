@@ -30,13 +30,12 @@ class userReservationController(@Autowired val service: reservationService) {
                   @AuthenticationPrincipal userDetails: UserDetails
     ):String{
        val reservationAll : List<reservation> = service.findReservationBy()
-        val searchReservationByNameTime : reservation = service.findEveryReservationByNameTime(reservationAll,reservation.name,reservation.times)
+        val searchReservationByNameTime : reservation = service.findEveryReservationByNameTime(reservationAll,reservation.name,reservation.times,reservation.gym)
         if(searchReservationByNameTime.id == "null")
         {
             model.addAttribute("userName",userDetails.username)
             val reservationAll2 : List<reservation> = service.findReservationBy()
             val reservationAllByUser : List<reservation> = service.findEveryReservationById(reservationAll2,userDetails.username)
-            println(reservationAllByUser)
             model.addAttribute("re",reservationAllByUser)
             return "userReservation"
         }
