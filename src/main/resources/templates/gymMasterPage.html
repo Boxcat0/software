@@ -10,8 +10,7 @@
 <body>
 <script>
   window.onload=function(){
-    var userName=localStorage.getItem('ID')
-    localStorage.setItem('ID', userName)
+    var userName = "[[${userName}]]"
     //userName=""
 
     var AccountRole = "ADMIN"; //ADMIN, USER, GYM, RESIST
@@ -21,7 +20,7 @@
     button.innerHTML=' '
     button.className='cmd';
 
-    if(userName !=""){  //로그인 돼있을 때
+    if(userName !==""){  //로그인 돼있을 때
       var u_name=document.getElementById('userName')
       u_name.innerHTML="로그인된 사용자 : "+userName
 
@@ -42,7 +41,7 @@
       button.onclick=function(){
         location.assign("/gym_review")
       }
-      var member_delete=document.getElementById('gym_review')
+      var member_delete=document.getElementById('gym_review1')
       member_delete.appendChild(button)
       member_delete.innerHTML+=`<br>`
 
@@ -79,7 +78,7 @@
       button.onclick=function(){
         location.assign("/gym_review")
       }
-      var login=document.getElementById('gym_review')
+      var login=document.getElementById('gym_review2')
       login.appendChild(button)
       login.innerHTML+=`<br>`
 

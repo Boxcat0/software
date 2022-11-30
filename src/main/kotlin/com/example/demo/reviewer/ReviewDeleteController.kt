@@ -31,6 +31,7 @@ class ReviewDeleteController(@Autowired private val pass: PasswordEncoder,
     {
         val allReview:List<Review> = reviewService.findReviews()
         val targetReview : Review = reviewService.findReviewByNumber(allReview, review.number_review)
+        println(targetReview)
         if(targetReview.id !="null")
         {
             reviewService.removing(targetReview)
@@ -41,6 +42,14 @@ class ReviewDeleteController(@Autowired private val pass: PasswordEncoder,
         }
         else
         {
+           if(targetReview.reviews !="")
+           {
+               reviewService.removing(targetReview)
+               model.addAttribute("userName",userDetails.username)
+               val allReview2:List<Review> = reviewService.findReviews()
+               model.addAttribute("re",allReview2)
+               return "adminReviewDelete"
+           }
             model.addAttribute("re",allReview)
             model.addAttribute("userName",userDetails.username)
             return "adminReviewDelete"

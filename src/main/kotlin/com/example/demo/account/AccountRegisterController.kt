@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import javax.servlet.http.HttpSession
 
 @Slf4j
 @Controller
@@ -20,7 +21,7 @@ class AccountRegisterController(
     }
     private val log = LoggerFactory.getLogger("Controller2")
     @PostMapping("/member_sign2")//회원가입 로직
-    fun processForm(account: Account):String{
+    fun processForm(account: Account,session: HttpSession):String{
         val all:List<Account> = accountService.findAccount()
         val target : Account = accountService.searchAccount(account.id, all)
         return if(target.id == "null")
@@ -28,9 +29,10 @@ class AccountRegisterController(
             log.info("account : $account")
             val insertMember = accountService.saveAccount(account)
             log.info("inserted member:$insertMember")
-            "home"
+            session.invalidate()
+            return "home"
         } else {
-            "member_sign2"
+            return "member_sign2"
         }
     }
 

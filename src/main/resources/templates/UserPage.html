@@ -12,14 +12,14 @@
     window.onload=function(){
         var userName="[[${userName}]]"
 
-        var AccountRole = "ADMIN"; //ADMIN, USER, GYM, RESIST
+        var AccountRole = "USER"; //ADMIN, USER, GYM, RESIST
 
         var button=document.createElement('button')
         button.type='button'
         button.innerHTML=' '
         button.className='cmd';
 
-        if(userName !=""){  //로그인 돼있을 때
+        if(userName !==""){  //로그인 돼있을 때
             var u_name=document.getElementById('userName')
             u_name.innerHTML="User : "+userName
 

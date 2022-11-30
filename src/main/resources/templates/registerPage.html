@@ -10,8 +10,7 @@
 <body>
 <script>
     window.onload=function(){
-        var userName=localStorage.getItem('ID')
-        localStorage.setItem('ID', userName)
+        var userName="[[${userName}]]"
 
         var AccountRole = "ADMIN"; //ADMIN, USER, GYM, RESIST
 
@@ -20,7 +19,7 @@
         button.innerHTML=' '
         button.className='cmd';
 
-        if(userName !=""){  //로그인 돼있을 때
+        if(userName !==""){  //로그인 돼있을 때
             var u_name=document.getElementById('userName')
             u_name.innerHTML="User : "+userName
 

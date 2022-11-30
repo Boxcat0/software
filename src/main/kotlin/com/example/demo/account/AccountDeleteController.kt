@@ -55,7 +55,7 @@ class AccountDeleteController(@Autowired val accountService : AccountService,
         }
         else{
             println("Delete fails")
-            return "redirect:/member_delete"
+            return "member_delete"
         }
     }
 }

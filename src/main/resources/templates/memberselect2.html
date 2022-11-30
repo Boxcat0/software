@@ -10,13 +10,13 @@
 <body>
 <script>
   window.onload=function(){
-    var userName=localStorage.getItem('ID')
+    var userName = "[[${userName}]]"
   }
   function toHome(){
     location.assign("/")
   }
   function toBack(){
-    location.assign("/myPage")
+    location.assign("/adminPage")
   }
   function toLogout(){
     location.assign("/logout")

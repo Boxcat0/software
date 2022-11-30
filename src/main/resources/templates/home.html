@@ -9,15 +9,25 @@
 </head>
 <body>
 <script>
-  var AccountRole = "[[${AccountRole}]]"; //ADMIN, USER, GYM, RESIST
-  var userName = "[[${userName}]]";
   window.onload=function(){
+    var userName=""
+    userName = "[[${userName}]]";
+    //userName="test"
+
+    var AccountRole =""
+    AccountRole = "[[${AccountRole}]]";
+    //AccountRole = ["ADMIN", "USER", "GYM", "REGIST]"] //ADMIN, USER, GYM, REGIST]
     var button=document.createElement('button')
     button.type='button'
     button.innerHTML=' '
     button.className='cmd';
-    if(userName){  //로그인 돼있을 때
+
+    if(userName !==""){  //로그인 돼있을 때
+      var u_name=document.getElementById('userName')
+      u_name.innerHTML="Now User : "+userName
+
       button.innerHTML="Logout"
+      //button.className='cmd'
       button.onclick=function(){
         location.assign("/logout")
       }
@@ -34,7 +44,7 @@
       myPage.appendChild(button)
       myPage.innerHTML+=`<br>`
 
-      if(AccountRole.includes("ADMIN")){   //ADMIN일때
+      if(AccountRole.includes("ADMIN")){   //ADMIN 일때
         button.innerHTML="관리자 페이지"
         button.onclick=function(){
           location.assign("/adminPage")
@@ -44,7 +54,7 @@
         myPage.innerHTML+=`<br>`
       }
 
-      if(AccountRole.includes("REGIST")){   //REGIST일때
+      if(AccountRole.includes("REGIST")){   //REGIST] 일때
         button.innerHTML="회원 가입 페이지"
         button.onclick=function(){
           location.assign("/registerPage")
@@ -54,7 +64,7 @@
         myPage.innerHTML+=`<br>`
       }
 
-      if(AccountRole.includes("GYM")){   //GYM일때
+      if(AccountRole.includes("GYM")){   //GYM 일때
         button.innerHTML="헬스장 점주 페이지"
         button.onclick=function(){
           location.assign("/gymMasterPage")
@@ -72,7 +82,8 @@
       map.appendChild(button)
       map.innerHTML+=`<br>`
     }
-    else{   //로그인 상태 아닐 때
+    else
+    {   //로그인 상태 아닐 때
       var u_name=document.getElementById('userName')
       u_name.innerHTML="Please login"
 
@@ -103,7 +114,7 @@
 </div>
 <div class = "wrap">
   <h1>어디가GYM?</h1>
-  <h3>로그인된 사용자:<td th:text ="${userName}"></h3>
+  <h3 id="userName"></h3>
   <p>
     <a id="myPage" href="/myPage"></a>
     <a id="adminPage" href="/adminPage"></a>
