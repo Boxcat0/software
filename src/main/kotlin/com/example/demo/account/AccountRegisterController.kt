@@ -27,8 +27,9 @@ class AccountRegisterController(
         return if(target.id == "null")
         {
             log.info("account : $account")
+            val accounts : AccountSave2 = accountService.accountToaccountSave(account)
+            val insertMember2 = accountService.saveAccount2(accounts)
             val insertMember = accountService.saveAccount(account)
-            log.info("inserted member:$insertMember")
             session.invalidate()
             return "home"
         } else {

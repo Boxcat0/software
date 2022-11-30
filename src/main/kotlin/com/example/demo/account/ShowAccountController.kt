@@ -16,9 +16,9 @@ class ShowAccountController(val service: AccountService) {
 
     @GetMapping("/allaccount")
     fun review(model: Model,@AuthenticationPrincipal user : User): String{
-        model.addAttribute("re", service.findAccount())
+        model.addAttribute("re2",service.findAccountSave())
         model.addAttribute("userName",user.username)
-        return "Memberselect2"
+        return "memberselect2"
     }
 
     @PostMapping("/allaccount")

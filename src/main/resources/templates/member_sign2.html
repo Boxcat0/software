@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/home.css"/>
+  <title>회원 가입</title>
 </head>
 <script>
   window.onload=function(){
@@ -19,6 +20,12 @@
   function toBack(){
     history.back()
   }
+  function check(){
+    if(document.getElementById("password").value.length <4){
+      alert("비밀번호를 4자리 이상 입력해주세요")
+      return false
+    }
+  }
 </script>
 <div class ="home">
   <img id="back" src="/img/back.png" onclick="toBack()">
@@ -28,9 +35,9 @@
 <body>
 <div class="wrap">
   <th><h1>회원 가입</h1></th>
-  <form method="post" action="/member_sign2">
-    Id : <input type="text" name="id"><br/>
-    password : <input type="text" name="password"><br/>
+  <form method="post" action="/member_sign2" onsubmit="return check()">
+    <label>Id </label><input type="text" id="id" name="id" placeholder="Id 입력"><br/>
+    <label>password </label><input type="text" id="password" name="password" placeholder="4자 이상의 password 입력"><br/><br>
     <input type="hidden" name="roles" value="USER"/>
     <input type="submit" class="cmd" value="Register"/>
   </form>

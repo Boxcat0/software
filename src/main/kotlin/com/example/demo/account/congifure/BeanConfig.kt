@@ -37,7 +37,7 @@ class BeanConfig {
         }
     }
     @Bean // 데이터 날아가는거 대비 비상 아이디 선언
-    fun applicationRunner(): ApplicationRunner {
+    fun applicationRunner2(): ApplicationRunner {
         return object : ApplicationRunner {
             @Autowired
             lateinit var accountService: AccountService

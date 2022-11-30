@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import javax.servlet.http.HttpSession
@@ -23,6 +24,17 @@ class AccountDeleteController(@Autowired val accountService : AccountService,
     @GetMapping("/member_delete")
     fun deletestart(): String{
         return "member_delete"
+    }
+
+    @PostMapping("/admin/delete_Member")
+    fun adminMemberDelete(account: AccountSave2,model: Model):String
+    {
+        val targetAccount : Account = accountRepository.findAccountById(account.id)
+        val targetAccountSave : AccountSave2 = accountService.findAccountSaveById(accountService.findAccountSave(),account.id)
+        accountService.remove(targetAccount)
+        accountService.remove2(targetAccountSave)
+        model.addAttribute("re2",accountService.findAccountSave())
+        return "memberselect2"
     }
 
     @PostMapping("/member_delete")
@@ -47,6 +59,9 @@ class AccountDeleteController(@Autowired val accountService : AccountService,
                 val targetReviewById:List<Review> = reviewService.findReviewStarById(targetReview,user.username)
                 val deleteTarget : Account = accountRepository.findAccountById(user.username)
                 accountService.remove(deleteTarget)
+                val SaveList : List<AccountSave2> = accountService. findAccountSave()
+                val deleteTargetSave : AccountSave2 = accountService.findAccountSaveById(SaveList, deleteTarget.id)
+                accountService.remove2(deleteTargetSave)
                 reviewService.changeMemberReview(targetReviewById)
                 session.invalidate()
                 println("Delete Sucess")
