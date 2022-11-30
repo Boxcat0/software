@@ -9,6 +9,6 @@ interface AccountRepository: JpaRepository<Account, Account>//무조건 <받는 
 
     fun findAccountById(id:String): Account
 
-    @Query("select id from account a INNER JOIN account_roles ar on a.number = ar.account_number") // 쿼리문을 기준으로 리스트 작성
+    @Query("select id from account a INNER JOIN account_roles ar on a.number_account = ar.account_number_account") // 쿼리문을 기준으로 리스트 작성
     fun findAccountBy(): List<Account>
 }

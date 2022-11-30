@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
+import kotlin.collections.ArrayList
 
 @Service
 class AccountService(@Autowired private val accountRepository: AccountRepository,
@@ -32,6 +33,18 @@ class AccountService(@Autowired private val accountRepository: AccountRepository
         return Account(null,"null","null",mutableSetOf(AccountRole.USER))
     }
     fun findAccount(): List<Account> = accountRepository.findAccountBy()
+
+    fun findRoleAccount(id:String):Account{
+        val list:List<Account> = findAccount()
+        for(i in 0..list.size-1)
+        {
+            if(list[i].id == id)
+            {
+                return list[i]
+            }
+        }
+        return  Account(null,"null","null",mutableSetOf(AccountRole.USER))
+    }
     fun accountpost(account : Account)
     {
         accountRepository.save(account)

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>관리자 페이지</title>
+  <link rel="stylesheet" href="/css/home.css"/>
+</head>
+<body>
+<script>
+  window.onload=function(){
+    var userName=localStorage.getItem('ID')
+    localStorage.setItem('ID', userName)
+
+    var button=document.createElement('button')
+    button.type='button'
+    button.innerHTML=' '
+    button.className='cmd';
+
+    if(userName !=""){  //로그인 돼있을 때
+      var u_name=document.getElementById('userName')
+      u_name.innerHTML="User : "+userName
+
+      button.innerHTML="Logout"
+      //button.className='cmd'
+      button.onclick=function(){
+        location.assign("/logout")
+      }
+      var logout=document.getElementById('logout')
+      logout.appendChild(button)
+      logout.innerHTML+=`<br>`
+      //button.className='cmd'
+
+      button.innerHTML="회원 조회"
+      button.onclick=function(){
+        location.assign("/allaccount")
+      }
+      var member_delete=document.getElementById('allaccount')
+      member_delete.appendChild(button)
+      member_delete.innerHTML+=`<br>`
+
+      button.innerHTML="예약 관리"
+      button.onclick=function(){
+        location.assign("/adminReservationCheck")
+      }
+      var user_review=document.getElementById('adminReservationCheck')
+      user_review.appendChild(button)
+      user_review.innerHTML+=`<br>`
+
+      button.innerHTML="리뷰 삭제"
+      button.onclick=function(){
+        location.assign("/adminReviewDelete")
+      }
+      var user_review=document.getElementById('adminReviewDelete')
+      user_review.appendChild(button)
+      user_review.innerHTML+=`<br>`
+
+      button.innerHTML="가입 등록"
+      button.onclick=function(){
+        location.assign("/gymMasterRegist")
+      }
+      var user_review=document.getElementById('gymMasterRegist')
+      user_review.appendChild(button)
+      user_review.innerHTML+=`<br>`
+    }
+    else{   //로그인 상태 아닐 때
+      var u_name=document.getElementById('userName')
+      u_name.innerHTML="Please login"
+
+      button.innerHTML="login"
+      button.onclick=function(){
+        location.assign("/login")
+      }
+      var login=document.getElementById('login')
+      login.appendChild(button)
+      login.innerHTML+=`<br>`
+    }
+  }
+  function toHome(){
+    location.assign("/")
+  }
+  function toback(){
+    location.assign("/")
+  }
+</script>
+<div class="home">
+  <img class="image" src="/img/back.png" onclick="toback()">
+  <img class="image" src="/img/home.png" onclick="toHome()">
+  <a id="logout" href="/logout" target="_self"></a>
+</div>
+<div class = "wrap">
+  <h1>관리자 페이지</h1>
+  <h3 id="userName"></h3>
+  <p>
+    <a id="allaccount" href="/allaccount"></a>
+    <a id="adminReservationCheck" href="/adminReservationCheck"></a>
+    <a id="adminReviewDelete" href="/adminReviewDelete"></a>
+    <a id="gymMasterRegist" href="/gymMasterRegist"></a>
+
+    <a id="login" href="/login" target="_self"></a>
+  </p>
+</div>
+</body>
+</html>

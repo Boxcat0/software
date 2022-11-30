@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이 페이지</title>
+    <link rel="stylesheet" href="/css/home.css"/>
+</head>
+<body>
+<script>
+    window.onload=function(){
+        var userName="[[${userName}]]"
+
+        var AccountRole = "ADMIN"; //ADMIN, USER, GYM, RESIST
+
+        var button=document.createElement('button')
+        button.type='button'
+        button.innerHTML=' '
+        button.className='cmd';
+
+        if(userName !=""){  //로그인 돼있을 때
+            var u_name=document.getElementById('userName')
+            u_name.innerHTML="User : "+userName
+
+            button.innerHTML="Logout"
+            //button.className='cmd'
+            button.onclick=function(){
+                location.assign("/logout")
+            }
+            var logout=document.getElementById('logout')
+            logout.appendChild(button)
+            logout.innerHTML+=`<br>`
+            //button.className='cmd'
+
+            button.innerHTML="회원 삭제"
+            button.onclick=function(){
+                location.assign("/member_delete")
+            }
+            var member_delete=document.getElementById('member_delete')
+            member_delete.appendChild(button)
+            member_delete.innerHTML+=`<br>`
+
+            button.innerHTML="회원 리뷰 조회"
+            button.onclick=function(){
+                location.assign("/user_review")
+            }
+            var user_review=document.getElementById('user_review')
+            user_review.appendChild(button)
+            user_review.innerHTML+=`<br>`
+
+
+            button.innerHTML="내 예약 조회"
+            button.onclick=function(){
+                location.assign("/userReservation")
+            }
+            var user_review=document.getElementById('userReservation')
+            user_review.appendChild(button)
+            user_review.innerHTML+=`<br>`
+        }
+        else{   //로그인 상태 아닐 때
+            var u_name=document.getElementById('userName')
+            u_name.innerHTML="Please login"
+
+            button.innerHTML="login"
+            button.onclick=function(){
+                location.assign("/login")
+            }
+            var login=document.getElementById('login')
+            login.appendChild(button)
+            login.innerHTML+=`<br>`
+
+            button.innerHTML="Regist"
+            button.onclick=function(){
+                location.assign("/member_sign2")
+            }
+            var sign=document.getElementById('sign')
+            sign.appendChild(button)
+            sign.innerHTML+=`<br>`
+        }
+    }
+    function toHome(){
+        location.assign("/")
+    }
+    function toback(){
+        location.assign("/")
+    }
+</script>
+<div class="home">
+    <img class="image" src="/img/back.png" onclick="toback()">
+    <img class="image" src="/img/home.png" onclick="toHome()">
+    <a id="logout" href="/logout" target="_self"></a>
+</div>
+<div class = "wrap">
+    <h1>마이 페이지</h1>
+    <h3 id="userName"></h3>
+    <p>
+        <a id="member_delete" href="/member_delete"></a>
+        <a id="user_review" href="/user_review"></a>
+        <a id="userReservation" href="/userReservation"></a>
+
+        <a id="login" href="/login" target="_self"></a>
+        <a id="sign" href="/member_sign2"></a>
+    </p>
+</div>
+</body>
+</html>

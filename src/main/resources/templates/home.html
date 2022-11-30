@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="/css/home.css"/>
+</head>
+<body>
+<script>
+  var AccountRole = "[[${AccountRole}]]"; //ADMIN, USER, GYM, RESIST
+  var userName = "[[${userName}]]";
+  window.onload=function(){
+    var button=document.createElement('button')
+    button.type='button'
+    button.innerHTML=' '
+    button.className='cmd';
+    if(userName){  //로그인 돼있을 때
+      button.innerHTML="Logout"
+      button.onclick=function(){
+        location.assign("/logout")
+      }
+      var logout=document.getElementById('logout')
+      logout.appendChild(button)
+      logout.innerHTML+=`<br>`
+      //button.className='cmd'
+
+      button.innerHTML="마이 페이지"
+      button.onclick=function(){
+        location.assign("/myPage")
+      }
+      var myPage=document.getElementById('myPage')
+      myPage.appendChild(button)
+      myPage.innerHTML+=`<br>`
+
+      if(AccountRole.includes("ADMIN")){   //ADMIN일때
+        button.innerHTML="관리자 페이지"
+        button.onclick=function(){
+          location.assign("/adminPage")
+        }
+        var myPage=document.getElementById('adminPage')
+        myPage.appendChild(button)
+        myPage.innerHTML+=`<br>`
+      }
+
+      if(AccountRole.includes("REGIST")){   //REGIST일때
+        button.innerHTML="회원 가입 페이지"
+        button.onclick=function(){
+          location.assign("/registerPage")
+        }
+        var myPage=document.getElementById('registerPage')
+        myPage.appendChild(button)
+        myPage.innerHTML+=`<br>`
+      }
+
+      if(AccountRole.includes("GYM")){   //GYM일때
+        button.innerHTML="헬스장 점주 페이지"
+        button.onclick=function(){
+          location.assign("/gymMasterPage")
+        }
+        var myPage=document.getElementById('gymMasterPage')
+        myPage.appendChild(button)
+        myPage.innerHTML+=`<br>`
+      }
+
+      button.innerHTML="헬스장 선택"
+      button.onclick=function(){
+        location.assign("/Map")
+      }
+      var map=document.getElementById('map')
+      map.appendChild(button)
+      map.innerHTML+=`<br>`
+    }
+    else{   //로그인 상태 아닐 때
+      var u_name=document.getElementById('userName')
+      u_name.innerHTML="Please login"
+
+      button.innerHTML="login"
+      button.onclick=function(){
+        location.assign("/login")
+      }
+      var login=document.getElementById('login')
+      login.appendChild(button)
+      login.innerHTML+=`<br>`
+
+      button.innerHTML="Regist"
+      button.onclick=function(){
+        location.assign("/member_sign2")
+      }
+      var sign=document.getElementById('sign')
+      sign.appendChild(button)
+      sign.innerHTML+=`<br>`
+    }
+  }
+  function toHome(){
+    location.assign("/")
+  }
+</script>
+<div class="home">
+  <img class="image" src="/img/home.png" onclick="toHome()">
+  <a id="logout" href="/logout" target="_self"></a>
+</div>
+<div class = "wrap">
+  <h1>어디가GYM?</h1>
+  <h3>로그인된 사용자:<td th:text ="${userName}"></h3>
+  <p>
+    <a id="myPage" href="/myPage"></a>
+    <a id="adminPage" href="/adminPage"></a>
+    <a id="registerPage" href="/registerPage"></a>
+    <a id="gymMasterPage" href="/gymMasterPage"></a>
+    <a id="map" href="/Map"></a>
+
+    <a id="login" href="/login" target="_self"></a>
+    <a id="sign" href="/member_sign2"></a>
+  </p>
+</div>
+</body>
+</html>

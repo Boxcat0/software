@@ -1,6 +1,5 @@
 package com.example.demo.gymMaster
 
-import com.example.demo.Event.eventGym
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -27,7 +26,7 @@ class gymAccountRegisterController(@Autowired val service: gymAccountService) {
             val insert: gymAccount = service.saveAccount(gymaccount)
             log.info("inserted member:$insert")
             model.addAttribute("userName",userDetails.username)
-            return "UserPage"
+            return "UserPage.html"
         }else {
             "gymMaster"
         }

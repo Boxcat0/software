@@ -15,7 +15,7 @@ class SecurityConfig(@Autowired private val accountService: AccountService,
 
     companion object {
         const val LOGIN_SUCCESS_URL: String = "/view/success"
-        const val LOGOUT_SUCCESS_URL: String = "/home"
+        const val LOGOUT_SUCCESS_URL: String = "/"
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {

@@ -1,25 +1,29 @@
 package com.example.demo
 
+import com.example.demo.account.Account
+import com.example.demo.account.AccountService
 import com.example.demo.gymMaster.gymAccount
 import com.example.demo.gymMaster.gymAccountService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpSession
 
 
 @Controller
-class mainController(@Autowired val gymAccountService: gymAccountService) {
+class mainController(@Autowired val gymAccountService: gymAccountService,
+                     @Autowired val AccountService : AccountService
+) {
     @GetMapping("/")
     fun welcome(@AuthenticationPrincipal userDetails: UserDetails, model : Model,session: HttpSession): String {
         val name: String = userDetails.username
-        println(name)
+        val target : Account = AccountService.findRoleAccount(userDetails.username)
+        println(target)
+        model.addAttribute("AccountRole",target.roles)
         model.addAttribute("userName", name)
         session.removeAttribute("GymId")
         session.removeAttribute("GymPosition")
@@ -29,7 +33,7 @@ class mainController(@Autowired val gymAccountService: gymAccountService) {
     fun myPage(@AuthenticationPrincipal userDetails: UserDetails,
                model: Model):String{
         model.addAttribute("userName",userDetails.username)
-        return "UserPage"
+        return "UserPage.html"
     }
     @GetMapping("/adminPage")
     fun adminPage(@AuthenticationPrincipal userDetails: UserDetails,model: Model):String{
@@ -39,7 +43,7 @@ class mainController(@Autowired val gymAccountService: gymAccountService) {
     @GetMapping("/registerPage")
     fun registPage(@AuthenticationPrincipal userDetails: UserDetails,model: Model):String{
         model.addAttribute("userName", userDetails.username)
-        return "registerPage"
+        return "registerPage.html"
     }
     @GetMapping("/gymMasterPage")
     fun gymMasterPage(@AuthenticationPrincipal userDetails: UserDetails,model: Model):String{
@@ -60,15 +64,12 @@ class mainController(@Autowired val gymAccountService: gymAccountService) {
             return "redirect:/"
         }
     }
-
-
     @GetMapping("/home")
     fun welcom2(@AuthenticationPrincipal userDetails: UserDetails, session: HttpSession,model : Model):String {
         val name: String = userDetails.username
-        println(name)
+        val target : Account = AccountService.findRoleAccount(userDetails.username)
+        model.addAttribute("AccountRole",target.roles)
         model.addAttribute("userName",name)
         return "home"
     }
-
-
 }

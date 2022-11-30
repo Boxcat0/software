@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHOW MEMBER</title>
+  <link rel="stylesheet" href="/css/home.css"/>
+</head>
+<body>
+<script>
+  window.onload=function(){
+    var userName=localStorage.getItem('ID')
+  }
+  function toHome(){
+    location.assign("/")
+  }
+  function toBack(){
+    location.assign("/myPage")
+  }
+  function toLogout(){
+    location.assign("/logout")
+  }
+</script>
+<div class="home">
+  <img class="image" src="/img/back.png" onclick="toBack()">
+  <img class="image" src="/img/home.png" onclick="toHome()">
+  <button id="logout" class="cmd" target="_self" onclick="toLogout()">Logout</button>
+</div>
+<div class = "wrap">
+  <h1>회원 조회</h1>
+  <table>
+    <tr>
+      <th>아이디</th>
+      <th>권한</th>
+    </tr>
+    <tr>
+    <tr th:each = "re:${re}">
+      <td th:text ="${re.id}">
+      <td th:text ="${re.roles}">
+    </tr>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
