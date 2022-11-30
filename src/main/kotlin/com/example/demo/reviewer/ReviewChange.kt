@@ -21,9 +21,18 @@ class ReviewChange(@Autowired private val pass: PasswordEncoder,
     fun intochange(@AuthenticationPrincipal user: UserDetails,model : Model, session: HttpSession
                    ): String{
         model.addAttribute("id", user.username)
-        val deleteTargetid : List<Review> = reviewRepository.findReviewById(user.username)
-        model.addAttribute("GymId",session.getAttribute("GymId"))
-        model.addAttribute("re",deleteTargetid)
+        val gymId  = session.getAttribute("GymId")
+        model.addAttribute("GymId",gymId)
+        if(gymId == null)//마이페이지에서 넘어온거
+        {
+            val deleteTargetid : List<Review> = reviewRepository.findReviewById(user.username)
+            model.addAttribute("re",deleteTargetid)
+        }
+        else
+        {
+            val deleteTargetid : List<Review> = reviewService.findReviewStarByGym(reviewRepository.findReviewById(user.username),gymId.toString())
+            model.addAttribute("re",deleteTargetid)
+        }
         return "change"
     }
 
@@ -52,7 +61,7 @@ class ReviewChange(@Autowired private val pass: PasswordEncoder,
             else{
                 finaltarget.reviews = changereviews//타겟된 리뷰를 change로 변경
                 reviewService.SaveReview(finaltarget)
-                return "redirect:/"
+                return "redirect:/change_review"
             }
         }
         model.addAttribute("id", user.username)

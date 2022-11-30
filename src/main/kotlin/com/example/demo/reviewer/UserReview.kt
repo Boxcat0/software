@@ -76,6 +76,7 @@ class UserReview(@Autowired private val pass: PasswordEncoder,
             model.addAttribute("name", account.id)
             model.addAttribute("re", searchTarget)
             model.addAttribute("GymId","null")
+            session.removeAttribute("GymId")
             return "reviewer"
         }
         return "usercheck"

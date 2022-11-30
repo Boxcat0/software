@@ -36,6 +36,14 @@
         <input type="hidden" name="roles" value="GYM">
         <input type="submit" class="cmd" value="가입승인하기"/>
       </form><br>
+      <form method="post" action="/admin/de_Master">
+        가입 취소 번호: <input type="number" name="number_gymaccount"/>
+        <input type="hidden" name="id" value="target">
+        <input type="hidden" name="pw" value="target">
+        <input type="hidden" name="gym" value="target">
+        <input type="hidden" name="roles" value="GYM">
+        <input type="submit" class="cmd" value="삭제"/></br>
+      </form>
       <table border="1">
         <tr>
           <th>등록번호</th>

@@ -39,6 +39,14 @@
       member_delete.appendChild(button)
       member_delete.innerHTML+=`<br>`
 
+      button.innerHTML="점주 조회"
+      button.onclick=function(){
+        location.assign("/allGymMaster")
+      }
+      var gymMaster=document.getElementById('allGymMaster')
+      gymMaster.appendChild(button)
+      gymMaster.innerHTML+='<br>'
+
       button.innerHTML="예약 관리"
       button.onclick=function(){
         location.assign("/adminReservationCheck")
@@ -93,6 +101,7 @@
   <h3 id="userName"></h3>
   <p>
     <a id="allaccount" href="/allaccount"></a>
+    <a id="allGymMaster" href="/allGymMaster"></a>
     <a id="adminReservationCheck" href="/adminReservationCheck"></a>
     <a id="adminReviewDelete" href="/adminReviewDelete"></a>
     <a id="gymMasterRegist" href="/gymMasterRegist"></a>

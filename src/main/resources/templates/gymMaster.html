@@ -35,7 +35,7 @@
   <th><h1>REGIST PAGE</h1></th>
   <form method="post" action="/gymMaster" onsubmit="return check()">
     <label>Id </label><input type="text" id="id" name="id" placeholder="Id 입력"><br/>
-    <label>password </label><input type="text" id="password" name="password" placeholder="4자 이상의 password 입력"><br/><br>
+    <label>password </label><input type="text" id="password" name="pw" placeholder="4자 이상의 password 입력"><br/><br>
     <input type="hidden" name="gym" th:value="${GymId}"/>
     <input type="hidden" name="roles" value="GYM"/>
     <input type="submit" class="cmd" value="Register"/>

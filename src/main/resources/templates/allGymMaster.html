@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHOW GymMaster</title>
+  <link rel="stylesheet" href="/css/home.css"/>
+</head>
+<body>
+<script>
+  window.onload=function(){
+    var userName = "[[${userName}]]"
+  }
+  function toHome(){
+    location.assign("/")
+  }
+  function toBack(){
+    location.assign("/adminPage")
+  }
+  function toLogout(){
+    location.assign("/logout")
+  }
+</script>
+<div class="home">
+  <img class="image" src="/img/back.png" onclick="toBack()">
+  <img class="image" src="/img/home.png" onclick="toHome()">
+  <button id="logout" class="cmd" target="_self" onclick="toLogout()">Logout</button>
+</div>
+<div class = "wrap">
+  <h1>점주 조회</h1>
+  <tr>
+    <form method="post" action="/admin/delete_Master">
+      <h5>회원 강제 삭제</h5>
+      삭제 아이디: <input type="text" name="id">
+      <input type="hidden" name="pw" value="target">
+      <input type="hidden" name="gym" value="target">
+      <input type="hidden" name="roles" value="GYM">
+      <input type="submit" class="cmd" value="삭제"/></br>
+    </form>
+  </tr>
+  <table>
+    <tr>
+      <th>번호</th>
+      <th>아이디</th>
+      <th>비밀번호</th>
+      <th>헬스장 상호</th>
+    </tr>
+    <tbody>
+    <tr th:each = "re:${re}">
+      <td th:text ="${re.number_gymaccount}">
+      <td th:text ="${re.id}">
+      <td th:text ="${re.pw}">
+      <td th:text ="${re.gym}">
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

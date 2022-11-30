@@ -4,6 +4,8 @@ import com.example.demo.account.Account
 import com.example.demo.account.AccountRole
 import com.example.demo.account.AccountService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,6 +21,23 @@ class permitController(@Autowired val service: gymAccountService,
         val gymList:List<gymAccount> = service.findGymAccount()
         model.addAttribute("re",gymList)
         return "permit"
+    }
+    @PostMapping("/admin/de_Master")
+    fun denied(model: Model, @AuthenticationPrincipal userDetails: UserDetails, gymAccount: gymAccount):String{
+        val deleteAccount : gymAccount = service.searchAccountByNumber(gymAccount.number_gymaccount, service.findGymAccount())
+        if(deleteAccount.id =="null")
+        {
+            val gymList:List<gymAccount> = service.findGymAccount()
+            model.addAttribute("re",gymList)
+            return "permit"
+        }
+        else
+        {
+            service.gymRemove(deleteAccount)
+            val gymList:List<gymAccount> = service.findGymAccount()
+            model.addAttribute("re",gymList)
+            return "permit"
+        }
     }
 
     @PostMapping("/gymMasterRegist")
