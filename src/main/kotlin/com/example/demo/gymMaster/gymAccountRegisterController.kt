@@ -1,6 +1,7 @@
 package com.example.demo.gymMaster
 
 import com.example.demo.account.Account
+import com.example.demo.account.AccountSave2
 import com.example.demo.account.AccountService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -52,17 +53,18 @@ class gymAccountRegisterController(@Autowired val service: gymAccountService,
         val target : gymAccount = service.searchAccountById(targetId,all)
         if(target.id =="null")
         {
-            model.addAttribute("re2",all)
+            model.addAttribute("re2",service.findGymAccount())
             model.addAttribute("userName",userDetails.username)
             return "allGymMaster"
         }
         else{
             val targetAccount : Account = accountService.searchAccount(gymaccount.id,accountService.findAccount())
             accountService.remove(targetAccount)
+            val targetAccountSave : AccountSave2 = accountService.findAccountSaveById(accountService.findAccountSave(),gymaccount.id)
+            accountService.remove2(targetAccountSave)
             model.addAttribute("userName",userDetails.username)
             service.gymRemove(target)
-            val all2 : List<gymAccount> = service.findGymAccount()
-            model.addAttribute("re2",all2)
+            model.addAttribute("re2",service.findGymAccount())
             return "allGymMaster"
         }
     }

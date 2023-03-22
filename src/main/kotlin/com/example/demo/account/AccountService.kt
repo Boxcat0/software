@@ -70,7 +70,7 @@ class AccountService(@Autowired private val accountRepository: AccountRepository
                 return account[i]
             }
         }
-        return AccountSave2(null, "", "")
+        return AccountSave2(null, "null", "")
     }
     fun remove2(account: AccountSave2){
         accountRepository2.delete(account)

@@ -8,11 +8,6 @@
     border: 1px solid #444444;
     border-collapse: collapse;
 }
-.reviewform textarea{
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-}
 .wrap th, td{
     border: 1px solid #444444;
     padding: 5px;
@@ -23,37 +18,42 @@
 .cmd{
     text-align: center;
     padding: 10px 20px;
+    width: 200px;
+    border-radius: 50px;
     border: 1px solid #e8e8e8;
-    background-color: #fff;
-    background-color:#000;  
+    background-color:#000;
     color: #fff;
     cursor:pointer;
     /* float: right; */
 }
 .cmd:hover{
-    background: #3300ff;
+    /* background: #3300ff; */
+    background: #0077FF;
 }
 .Logout{
     text-align: left;
     padding: 10px 20px;
-    border: 1px solid #e8e8e8;
+    border-radius: 50px;
+    /* border: 1px solid #e8e8e8; */
     background-color: #fff;
-    background-color:#000;  
+    color: #000;
+    cursor:pointer;
+    transition: 0.3s;
+}
+.Logout:hover{
+    /* background: #3300ff; */
+    opacity: 1;
     color: #fff;
+    background: #0077FF;
+    border-color: #0077FF;
 }
-.inp{   
-    /* border: none; */
-    /* color: #aaa; */
-}
-.warning_msg {
-    display: none;
-    position: relative;
-    text-align: center;
-    background: #ffffff;
-    line-height: 26px;
+.modal {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    height: 100%;
     width: 100%;
-    color: red;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #e0e0e0;
 }

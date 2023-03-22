@@ -2,6 +2,7 @@ package com.example.demo.gymMaster
 
 import com.example.demo.account.Account
 import com.example.demo.account.AccountRole
+import com.example.demo.account.AccountSave2
 import com.example.demo.account.AccountService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -34,6 +35,10 @@ class permitController(@Autowired val service: gymAccountService,
         else
         {
             service.gymRemove(deleteAccount)
+            val deleteAccout : Account = accountService.searchAccount(deleteAccount.id,accountService.findAccount())
+            accountService.remove(deleteAccout)
+            val deleteAccountSave2 : AccountSave2 = accountService.findAccountSaveById(accountService.findAccountSave(),deleteAccount.id)
+            accountService.remove2(deleteAccountSave2)
             val gymList:List<gymAccount> = service.findGymAccount()
             model.addAttribute("re",gymList)
             return "permit"
@@ -54,6 +59,7 @@ class permitController(@Autowired val service: gymAccountService,
         {
             val password : String = permitAccount.pw
             val addAccount = Account(null,permitAccount.id,password,mutableSetOf(AccountRole.GYM))
+            val addAccountSave = AccountSave2(null,permitAccount.id,password)
             if(accountService.searchAccount(addAccount.id,accountService.findAccount()).id!= "null")
             {
                 val gymList:List<gymAccount> = service.findGymAccount()
@@ -63,6 +69,7 @@ class permitController(@Autowired val service: gymAccountService,
             else
             {
                 accountService.saveAccount(addAccount)
+                accountService.saveAccount2(addAccountSave)
                 return "home"
             }
         }

@@ -1,5 +1,6 @@
 package com.example.demo.account
 
+import com.example.demo.gymMaster.gymAccount
 import com.example.demo.gymMaster.gymAccountService
 import com.example.demo.reviewer.Review
 import com.example.demo.reviewer.ReviewService
@@ -19,7 +20,7 @@ class AccountDeleteController(@Autowired val accountService : AccountService,
                               @Autowired val accountRepository: AccountRepository,
                               @Autowired private val pass: PasswordEncoder,
                               @Autowired val gymService: gymAccountService,
-                              @Autowired val reviewService: ReviewService
+                              @Autowired val reviewService: ReviewService,
 ) {
     @GetMapping("/member_delete")
     fun deletestart(): String{
@@ -29,12 +30,26 @@ class AccountDeleteController(@Autowired val accountService : AccountService,
     @PostMapping("/admin/delete_Member")
     fun adminMemberDelete(account: AccountSave2,model: Model):String
     {
-        val targetAccount : Account = accountRepository.findAccountById(account.id)
         val targetAccountSave : AccountSave2 = accountService.findAccountSaveById(accountService.findAccountSave(),account.id)
-        accountService.remove(targetAccount)
-        accountService.remove2(targetAccountSave)
-        model.addAttribute("re2",accountService.findAccountSave())
-        return "memberselect2"
+       if(targetAccountSave.id != "null")
+       {
+           val targetAccount : Account = accountRepository.findAccountById(account.id)
+           accountService.remove(targetAccount)
+           accountService.remove2(targetAccountSave)
+           val gymAccountlist : List<gymAccount> = gymService.findGymAccount()
+           val targetgym : gymAccount = gymService.searchAccountById(account.id, gymAccountlist)
+           if(targetgym.id != "null")
+           {
+               gymService.gymRemove(targetgym)
+           }
+           model.addAttribute("re2",accountService.findAccountSave())
+           return "memberselect2"
+       }
+        else
+       {
+           model.addAttribute("re2",accountService.findAccountSave())
+           return "memberselect2"
+       }
     }
 
     @PostMapping("/member_delete")

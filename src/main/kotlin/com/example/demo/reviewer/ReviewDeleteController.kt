@@ -57,6 +57,8 @@ class ReviewDeleteController(@Autowired private val pass: PasswordEncoder,
     }
     @GetMapping("/review_delete")
     fun intodelete(model: Model, session: HttpSession): String{
+        val allReview :List<Review> = reviewRepository.findReviewById(session.id)
+        model.addAttribute("re",allReview)
         model.addAttribute("gym",session.getAttribute("GymId"))
         return "review_delete"
     }
@@ -69,11 +71,11 @@ class ReviewDeleteController(@Autowired private val pass: PasswordEncoder,
         val newPassword : String = account.password
         val oldPassword : String = user.password
         val targetid : String = account.id
-        val targetgym : String? = review.gym
+        val targetgym : Long? = review.number_review
         if(pass.matches(newPassword, oldPassword))//회원 확인
         {
             val deleteTargetid : List<Review> = reviewRepository.findReviewById(targetid)//아이디 기준으로 리뷰 조회
-            val finaltarget : Review = reviewService.findGymByid(deleteTargetid,targetgym)//아이디로 조회한 헬스장을 헬스장 번호로 조회
+            val finaltarget : Review = reviewService.findReviewByNumber(deleteTargetid,targetgym)//아이디로 조회한 헬스장을 헬스장 번호로 조회
             reviewService.removing(finaltarget)//삭제
             println("Delete Sucess")
             return "redirect:/"

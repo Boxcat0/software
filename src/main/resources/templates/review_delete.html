@@ -3,9 +3,9 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <th><h1>Delete Review PAGE</h1></th>
   <link rel="stylesheet" href="/css/home.css"/>
 </head>
+<body>
 <script>
   window.onload=function(){
     var userName=localStorage.getItem('ID')
@@ -17,24 +17,40 @@
     location.assign("/logout")
   }
   function toBack(){
-    history.back()
+    location.assign("/adminPage")
   }
 </script>
-<div class ="home">
+<div class="home">
   <img id="back" src="/img/back.png" onclick="toBack()">
   <img class="image" src="/img/home.png" onclick="toHome()">
-  <button id="logout" class="cmd" target="_self" onclick="toLogout()">Logout</button>
+  <button id="logout" class="Logout" target="_self" onclick="toLogout()">Logout</button>
 </div>
-<body>
-<div class="wrap">
-  <form method="post" action="/review_delete">
-    Id : <input type="text" name="id"><br/>
-    password : <input type="text" name="password"><br/>
-    <input type="hidden" name="gym" th:value="${GymId}"><br/>
-    <input type="hidden" name="roles" value="USER"/>
-    <input type="hidden" name="reviews" value="target"/>
-    <input type="submit" class="cmd" value="Register"/>
+<div class ="wrap">
+  <th><h1>Delete Review PAGE</h1></th>
+  <form method="post" action="/adminReviewDelete">
+    삭세할 번호:<input type="text" name="number_review">
+    <input type="hidden" name="id" value="target">
+    <input type="hidden" name="gym" th:value = "${GymId}">
+    <input type="hidden" name="star" value="1">
+    <input type="hidden" name="reviews" value="target">
+    <input type="submit" class="cmd" value="삭제"/>
   </form>
+  <table border="1">
+    <tr>
+      <th>number</th>
+      <th>리뷰 내용</th>
+      <th>별점</th>
+      <th>ID</th>
+    </tr>
+    <tbody>
+    <tr th:each = "re:${re}">
+      <td th:text ="${re.number_review}">
+      <td th:text ="${re.reviews}">
+      <td th:text ="${re.star}">
+      <td th:text ="${re.id}">
+    </tr>
+    </tbody>
+  </table>
 </div>
 </body>
 </html>
